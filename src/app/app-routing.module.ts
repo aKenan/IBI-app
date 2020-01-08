@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   //{ path:'IBIAdminPanel', loadChildren : () => import('./administration-module/administration-module.module').then(m => m.AdministrationModuleModule)}
-  { path:'IBIAdminPanel', loadChildren: './administration-module/administration-module.module#AdministrationModuleModule'}
+  { path:'IBIAdminPanel', loadChildren: './administration-module/administration-module.module#AdministrationModuleModule'},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

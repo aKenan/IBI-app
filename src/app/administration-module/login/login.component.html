@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<div class="d-flex justify-content-center h-100">
+  <div class="user_card">
+    <div class="d-flex justify-content-center">
+      <div class="brand_logo_container">
+        <img src="assets/images/ibi_logo.jpg"  class="brand_logo" alt="Logo">
+      </div>
+    </div>    
+    <div class="d-flex justify-content-center form_container">      
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="d-flex justify-content-center links">
+            <h5>PRIJAVA</h5> 
+          </div>  
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" name="username" class="form-control input_user" formControlName="username" placeholder="Korisničko ime" autocomplete="off">            
+            <div *ngIf="!f.username.valid" class="invalid-feedback">              
+              <div *ngIf="f.username.errors.required">Unesite korisničko ime</div>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </div>
+            <input type="password" name="password" class="form-control input_pass" formControlName="password" placeholder="Lozinka" autocomplete="off">
+          </div>            
+            <div class="d-flex justify-content-center mt-3 login_container">
+              <button type="submit" name="button" class="btn login_btn">Prijavi se</button>
+          </div>
+        </form>
+  </div>
+</div>
+</div>
+
