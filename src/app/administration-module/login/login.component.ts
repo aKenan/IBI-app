@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2'
+import { GeneralService } from '../../../services/generalService';
+import { AdminService } from '../../../services/adminService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +16,7 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor(private fb: FormBuilder ) { }
+  constructor(private fb: FormBuilder, private gs: GeneralService, private adminService: AdminService, private router : Router ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,8 +27,23 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-  login(){
+  login(){    
     console.log(this.loginForm);
+    if(!this.loginForm.valid){
+      //this.gs.showError("Greška", "Korisničko ime ili lozinka nisu isprani");
+    }
+    else{
+      this.adminService.login(this.loginForm.value).subscribe(
+        data => {
+          this.adminService.setLoginReturnData(data);
+          this.gs.showSuccess('Uspješna prijava');
+          this.router.navigate(['../IBIAdminPanel']);
+        },
+        error => {
+          this.gs.showError('Neuspješna prijava', error.error);
+        }
+      )
+    }
   }
 
 }

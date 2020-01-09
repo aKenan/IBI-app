@@ -42,7 +42,7 @@ body,
 			margin-top: 100px;
 		}
 		.login_btn {
-			width: 100%;
+			width: 60%;
 			background: #c0392b !important;
 			color: white !important;
 		}
@@ -66,4 +66,13 @@ body,
 		}
 		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
 			background-color: #c0392b !important;
+		}
+		form{
+			width:100%
+		}
+		.invalid-feedback{
+			display:inherit
+		}
+		.border-red{
+			border:1px solid red;
 		}
