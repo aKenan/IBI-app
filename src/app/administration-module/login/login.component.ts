@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   login(){    
     console.log(this.loginForm);
     if(!this.loginForm.valid){
-      //this.gs.showError("Greška", "Korisničko ime ili lozinka nisu isprani");
+      this.gs.setAllTouched(this.loginForm);
     }
     else{
       this.adminService.login(this.loginForm.value).subscribe(
@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['../IBIAdminPanel']);
         },
         error => {
+          console.log(error);
           this.gs.showError('Neuspješna prijava', error.error);
         }
       )
