@@ -25,7 +25,8 @@
             "styles": [
               "src/styles.css",
 			  "node_modules/bootstrap/dist/css/bootstrap.min.css",
-			  "node_modules/font-awesome/css/font-awesome.css"
+			  "node_modules/font-awesome/css/font-awesome.css",
+			  "src/assets/scss/paper-dashboard.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -84,7 +85,8 @@
             "styles": [
               "src/styles.css",
 			  "node_modules/bootstrap/dist/css/bootstrap.min.css",
-			  "node_modules/font-awesome/css/font-awesome.css"
+			  "node_modules/font-awesome/css/font-awesome.css",
+			  "src/assets/scss/paper-dashboard.scss"
             ],
             "scripts": [],
             "assets": [
