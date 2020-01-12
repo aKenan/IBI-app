@@ -8,8 +8,8 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/',     title: 'Admin početna',         icon:'nc-bank',       class: '' },
-  { path: '/nekretnine',    title: 'Nekretnine',        icon:'nc-shop',    class: '' },
+  { path: '/IBIAdminPanel',     title: 'Admin početna',         icon:'nc-bank',       class: '' },
+  { path: '/IBIAdminPanel/nekretnine',    title: 'Nekretnine',        icon:'nc-shop',    class: '' },
   // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
   // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
   // { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },

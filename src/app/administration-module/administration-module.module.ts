@@ -11,17 +11,22 @@ import { AdminLayoutComponent } from '../_layouts/admin-layout/admin-layout.comp
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NekretnineComponent } from './nekretnine/nekretnine.component';
+import { DxDataGridModule,  DxBulletModule,  DxTemplateModule } from 'devextreme-angular';
 
 
 @NgModule({
-  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent],
+  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    DxDataGridModule,
+    DxTemplateModule,
+    DxBulletModule
   ],
   providers:[    
   ]

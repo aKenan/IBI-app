@@ -4,14 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './auth.guard';
 import { AdminLayoutComponent } from '../_layouts/admin-layout/admin-layout.component';
+import { NekretnineComponent } from './nekretnine/nekretnine.component';
 
 const routes: Routes = [
   {path: '', component: AdminLayoutComponent, canActivate: [AuthGuard],
     children : [
-      { path : '', component: MainComponent}
+      { path : '', component: MainComponent},
+      { path: 'nekretnine', component:NekretnineComponent}
     ]
   },
   {path: 'login', component:LoginComponent, pathMatch: 'full'}
+  
 ];
 
 @NgModule({
