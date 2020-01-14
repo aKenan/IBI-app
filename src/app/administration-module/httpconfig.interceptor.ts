@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild, ElementRef } from '@angular/core';
 //import { ErrorDialogService } from '../error-dialog/errordialog.service';
 import {
     HttpInterceptor,
@@ -12,11 +12,12 @@ import {
 import { Observable, throwError  } from 'rxjs';
 import { map, catchError, finalize, delay } from 'rxjs/operators';
 import { GeneralService } from '../../services/generalService';
+import { NgProgress, NgProgressComponent } from '@ngx-progressbar/core';
 
 @Injectable() export class HttpConfigInterceptor implements HttpInterceptor { 
 
     constructor(private gs: GeneralService){}
-
+    
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log('INTERCEPTOR request', request);
         

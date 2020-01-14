@@ -14,6 +14,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NekretnineComponent } from './nekretnine/nekretnine.component';
 import { DxDataGridModule,  DxBulletModule,  DxTemplateModule } from 'devextreme-angular';
 import { NekretninaComponent } from './nekretnina/nekretnina.component';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import {NgProgressHttpModule} from "@ngx-progressbar/http";
+
 
 @NgModule({
   declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent, NekretninaComponent],
@@ -26,7 +29,12 @@ import { NekretninaComponent } from './nekretnina/nekretnina.component';
     NgbModule,
     DxDataGridModule,
     DxTemplateModule,
-    DxBulletModule
+    DxBulletModule,    
+    NgProgressModule.withConfig({
+      spinnerPosition: "left",
+      color: "#f71cff"
+    }),
+    NgProgressHttpModule
   ],
   providers:[    ]
 })

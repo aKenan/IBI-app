@@ -1,8 +1,9 @@
 <div id="overlay" *ngIf="showLoader">
     <div class="spinner"></div>
     <br/>
-    Učitavam..
+    Učitavam...
 </div>
+<ng-progress #progressBar (started)="onStarted()" (completed)="onCompleted()"></ng-progress>
 <div class="wrapper">
   <div class="sidebar" data-color="white" data-active-color="danger">
       <admin-sidebar></admin-sidebar>
@@ -14,6 +15,12 @@
         
           <router-outlet></router-outlet>        
       </div>
+      <button (click)="progressBar.start()">
+        start
+      </button>
+      <button (click)="progressBar.complete()">
+        stop
+      </button>
       <!-- <footer-cmp></footer-cmp> -->
   </div>
 </div>
