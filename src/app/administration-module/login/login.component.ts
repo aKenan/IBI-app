@@ -38,11 +38,12 @@ export class LoginComponent implements OnInit {
           this.adminService.setLoginReturnData(data);
           this.gs.showSuccess('Uspješna prijava');
           this.router.navigate(['../IBIAdminPanel']);
-        },
-        error => {
-          console.log(error);
-          this.gs.showError('Neuspješna prijava', error.error);
         }
+        // },
+        // error => {
+        //   console.log(error);
+        //   this.gs.showError('Neuspješna prijava', error.error);
+        // }
       )
     }
   }

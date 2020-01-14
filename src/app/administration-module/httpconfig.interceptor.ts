@@ -9,41 +9,40 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
+import { map, catchError, finalize, delay } from 'rxjs/operators';
+import { GeneralService } from '../../services/generalService';
 
 @Injectable() export class HttpConfigInterceptor implements HttpInterceptor { 
 
+    constructor(private gs: GeneralService){}
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log('INTERCEPTOR request', request);
-        //const token: string = localStorage.getItem('token');
-
-        // if (token) {
-        //     request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
-        // }
-
-        // if (!request.headers.has('Content-Type')) {
-        //     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-        // }
-
-        // request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+        
 
         return next.handle(request).pipe(
+            delay(0),
             map((event: HttpEvent<any>) => {
+                this.gs.showAdminLoader = true;
                 if (event instanceof HttpResponse) {
-                    console.log('event--->>>', event);
-                }
+                    
+                }             
                 return event;
             }),
             catchError((error: HttpErrorResponse) => {
+                this.gs.showError("Greška", error.error);
                 console.log('error--->>>', error);
                 let data = {};
                 data = {
                     reason: error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-                //this.errorDialogService.openDialog(data);
+                
                 return throwError(error);
+            }),
+            finalize(() =>{
+                this.gs.showAdminLoader = false;
             }));
     }
 }

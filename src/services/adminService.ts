@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, SkipSelf } from "@angular/core";
 
 import { Observable, Subject, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';

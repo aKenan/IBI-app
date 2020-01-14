@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from '../../../services/generalService';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gs: GeneralService) { }
 
   ngOnInit() {
+    
   }
 
+  get showLoader() { return this.gs.showAdminLoader;}
 }

@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <h5 class="card-title" style="display: inline-block;">Nekretnine</h5>
-        <button class="btn btn-success pull-right"><span class="nc-icon nc-simple-add"></span> Dodaj novu nekretninu</button>
+        <a class="btn btn-success pull-right" [routerLink]="['/IBIAdminPanel/nekretnina/0']"><span class="nc-icon nc-simple-add" ></span> Dodaj novu nekretninu</a>
       </div>
       <div class="card-body">
         <div class="row">
@@ -13,8 +13,8 @@
                 [remoteOperations]="false"
                 [allowColumnReordering]="true"
                 [rowAlternationEnabled]="true"
-                [showBorders]="true"
-                (onContentReady)="contentReady($event)">
+                [showBorders]="true">
+                
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager
@@ -26,20 +26,27 @@
                     [highlightCaseSensitive]="true"
                 ></dxo-search-panel>
                 <dxo-group-panel
-                    [visible]="true"
+                    [visible]="false"
                 ></dxo-group-panel>
                 <dxo-grouping
                     [autoExpandAll]="false"
                 ></dxo-grouping>
 
-                <dxi-column dataField="Product" [groupIndex]="0"></dxi-column>
-                <dxi-column dataField="Amount" caption="Sale Amount" dataType="number" format="currency" alignment="right"></dxi-column>
-                <dxi-column caption="Discount %" dataField="Discount" cellTemplate="discountCellTemplate" dataType="number" format="percent" alignment="right" [allowGrouping]="false" cssClass="bullet"></dxi-column>
-                <dxi-column dataField="SaleDate" dataType="date"></dxi-column>
-                <dxi-column dataField="Region" dataType="string"></dxi-column>
-                <dxi-column dataField="Sector" dataType="string"></dxi-column>
-                <dxi-column dataField="Channel" dataType="string"></dxi-column>
-                <dxi-column dataField="Customer" dataType="string" [width]="150"></dxi-column>
+                <dxi-column dataField="naziv" caption="Naziv"></dxi-column>
+                <dxi-column dataField="opisKratko" caption="Opis" dataType="number" format="currency" alignment="right"></dxi-column>
+                <dxi-column dataField="tipNekretnine" dataType="string"></dxi-column>
+                <dxi-column dataField="lokacijaId" dataType="string"></dxi-column>
+                <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell"></dxi-column>
+                <dxi-column dataField="aktivan" dataType="string"></dxi-column>   
+                <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate"></dxi-column>     
+                
+                <div *dxTemplate="let cellData of 'dateCell'">
+                  {{cellData.value | date: 'dd.MM.yyyy. u HH:mm'}}
+                </div>
+
+                <div *dxTemplate="let cellData of 'buttonTemplate'">
+                  <button type="button" class="btn btn-small btn-info">Izmjeni</button>
+                </div>
 
                 <div *dxTemplate="let d of 'discountCellTemplate'">
                       <div class="chart-cell">

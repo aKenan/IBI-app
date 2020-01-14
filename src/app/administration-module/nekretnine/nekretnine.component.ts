@@ -15,6 +15,7 @@ export class NekretnineComponent implements OnInit {
   constructor(private adminService: AdminService, private generalService : GeneralService) { }
 
   ngOnInit() { 
+    this.dajNekretnine();
   }
 
   dajNekretnine(){

@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import Swal, { SweetAlertResult } from 'sweetalert2'
 import { Injectable } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class GeneralService{
 
     rootApi : string = 'http://localhost:15079/api';
+    public showAdminLoader : boolean = false;
 
     public getApiUrl(urlPart : string) : string{
         return `${this.rootApi}${urlPart}`
@@ -26,7 +27,7 @@ export class GeneralService{
 
     showError(title: string, text:string){
         Swal.fire({
-            title:'Greška',
+            title: title,
             text: text,
             icon:'error',
             allowEnterKey: true,
@@ -43,5 +44,4 @@ export class GeneralService{
             timer: 750
           })
     }
-
 }

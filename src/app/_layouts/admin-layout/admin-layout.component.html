@@ -1,12 +1,18 @@
-
+<div id="overlay" *ngIf="showLoader">
+    <div class="spinner"></div>
+    <br/>
+    Učitavam..
+</div>
 <div class="wrapper">
   <div class="sidebar" data-color="white" data-active-color="danger">
       <admin-sidebar></admin-sidebar>
   </div>
   <div class="main-panel">
+      
       <admin-navbar></admin-navbar>
       <div class="content">
-          <router-outlet></router-outlet>
+        
+          <router-outlet></router-outlet>        
       </div>
       <!-- <footer-cmp></footer-cmp> -->
   </div>

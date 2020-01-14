@@ -13,11 +13,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NekretnineComponent } from './nekretnine/nekretnine.component';
 import { DxDataGridModule,  DxBulletModule,  DxTemplateModule } from 'devextreme-angular';
-import { HttpConfigInterceptor} from './httpconfig.interceptor';
-
+import { NekretninaComponent } from './nekretnina/nekretnina.component';
 
 @NgModule({
-  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent],
+  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent, NekretninaComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,
@@ -29,8 +28,6 @@ import { HttpConfigInterceptor} from './httpconfig.interceptor';
     DxTemplateModule,
     DxBulletModule
   ],
-  providers:[    
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
-  ]
+  providers:[    ]
 })
 export class AdministrationModuleModule { }
