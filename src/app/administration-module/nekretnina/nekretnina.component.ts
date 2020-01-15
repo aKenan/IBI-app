@@ -17,7 +17,7 @@ export class NekretninaComponent implements OnInit {
   titleText: string;
   nekretninaForm : FormGroup;
   tipoviNekretnine: ISifarnik[];
-  statusiNekretnine: ISifarnik[];
+  statusiNekretnine: ISifarnik[]; 
 
   constructor(private router: Router, private ar: ActivatedRoute, private fb: FormBuilder, private adminService: AdminService, private gs: GeneralService) { 
     this.id = parseInt(this.ar.snapshot.paramMap.get("id"));
@@ -46,7 +46,7 @@ export class NekretninaComponent implements OnInit {
         statusNekretnine: new FormControl(null, [Validators.required]),
         prodaja: [false],
         najam: [false],
-        lokacijaId: [22, Validators.required],
+        lokacijaId: [null, Validators.required],
         aktivan: [false]
       })
     }
@@ -85,5 +85,8 @@ export class NekretninaComponent implements OnInit {
     }
   }
 
+  onLokacijaSelected(value:number) {
+    this.nekretninaForm.controls.lokacijaId.setValue(value);
+  }
 
 }

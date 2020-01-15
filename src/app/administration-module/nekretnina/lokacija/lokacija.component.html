@@ -1,0 +1,18 @@
+<div class="form-group row">
+  <label class="font-weight-bold col-md-2">Lokacija</label>
+  <div class="col-md-3">
+    <select class="form-control" [(ngModel)]="lokacija1" (change)="l1Change()">
+      <option *ngFor="let elem of lokacijeL1" [value]="elem.id">{{elem.naziv}}</option>                                                                
+    </select> 
+  </div>  
+  <div class="col-md-3" *ngIf="lokacija1 != null">
+    <select class="form-control" [(ngModel)]="lokacija2" (change)="l2Change()">
+      <option *ngFor="let elem of lokacijeL2" [value]="elem.id">{{elem.naziv}}</option>                                                                
+    </select> 
+  </div> 
+  <div class="col-md-3" *ngIf="lokacija2 != null">
+    <select class="form-control" [(ngModel)]="lokacija3" (change)="l3Change()">
+      <option *ngFor="let elem of lokacijeL3" [value]="elem.id">{{elem.naziv}}</option>                                                                
+    </select> 
+  </div>
+</div>

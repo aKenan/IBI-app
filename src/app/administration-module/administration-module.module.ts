@@ -16,10 +16,12 @@ import { DxDataGridModule,  DxBulletModule,  DxTemplateModule, DxDateBoxModule, 
 import { NekretninaComponent } from './nekretnina/nekretnina.component';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
+import { LokacijaComponent } from './nekretnina/lokacija/lokacija.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent, NekretninaComponent],
+  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent, NekretninaComponent, LokacijaComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,
@@ -32,6 +34,7 @@ import {NgProgressHttpModule} from "@ngx-progressbar/http";
     DxBulletModule, 
     DxDateBoxModule,   
     DxCheckBoxModule,
+    FormsModule,
     NgProgressModule.withConfig({
       spinnerPosition: "left",
       color: "#f71cff"

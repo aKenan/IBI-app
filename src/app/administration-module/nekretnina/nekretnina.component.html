@@ -74,6 +74,8 @@
                 </div>
               </div>
 
+              <app-lokacija [lokacijaId]="f.lokacijaId.value" (lokacijaSelected)="onLokacijaSelected($event)"></app-lokacija>
+
               <div class="form-group row">
                 <label class="font-weight-bold col-md-2">Adresa</label>
                 <div class="col-md-10">

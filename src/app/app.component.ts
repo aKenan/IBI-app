@@ -15,13 +15,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.admin = this.router.url.toString();
-    console.log(this.router.url);
-    console.log(this.router.url.toLowerCase().includes('ibiadminpanel'));
+    
   }
 
-  public isAdmin():boolean{
-    return this.router.url.toLowerCase().includes('ibiadminpanel');
-  }
+  
 }
 
