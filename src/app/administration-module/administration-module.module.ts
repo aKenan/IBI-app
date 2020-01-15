@@ -12,7 +12,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NekretnineComponent } from './nekretnine/nekretnine.component';
-import { DxDataGridModule,  DxBulletModule,  DxTemplateModule } from 'devextreme-angular';
+import { DxDataGridModule,  DxBulletModule,  DxTemplateModule, DxDateBoxModule, DxCheckBoxModule } from 'devextreme-angular';
 import { NekretninaComponent } from './nekretnina/nekretnina.component';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
@@ -29,7 +29,9 @@ import {NgProgressHttpModule} from "@ngx-progressbar/http";
     NgbModule,
     DxDataGridModule,
     DxTemplateModule,
-    DxBulletModule,    
+    DxBulletModule, 
+    DxDateBoxModule,   
+    DxCheckBoxModule,
     NgProgressModule.withConfig({
       spinnerPosition: "left",
       color: "#f71cff"

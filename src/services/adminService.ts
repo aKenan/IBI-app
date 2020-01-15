@@ -7,6 +7,7 @@ import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
 import { ILoginModel, ILoginReturnModel } from "../models/login";
 import { ILokacija, IKontakt, INekretnina, IOpisNekretnine} from "../models/nekretnina";
+import { ISifarnik } from "../models/sifarnik";
 
 @Injectable({
     providedIn: 'root'
@@ -103,6 +104,13 @@ export class AdminService{
     dajOpisNekretnine(id: number) : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/admin/OpisNekretnine/${id}`), { headers : this.getHeaders() }).pipe(
             map((response => response as IOpisNekretnine[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajSveSifarnike() : Observable<any>{
+        return this.http.get(this.gs.getApiUrl(`/admin/sifarnik/dajsve`), { headers : this.getHeaders() }).pipe(
+            map((response => response as ISifarnik[]),
             catchError((error => throwError(error)  ))
             )
     )}

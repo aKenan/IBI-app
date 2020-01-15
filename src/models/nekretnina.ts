@@ -31,6 +31,7 @@ export interface IOpisNekretnine
 export interface INekretnina
 {
     id: number;
+    oznakaNekretnine: string;
     naziv: string;
     opisKratko: string;
     opisDetaljno: string;
@@ -39,8 +40,8 @@ export interface INekretnina
     datumIzmjene?: Date;
     vaziOd: Date;
     vaziDo: Date;
-    tipNekretnine: number;
-    statusNekretnine: number; //status nekretnine
+    tipNekretnine: number; //sif = 2
+    statusNekretnine: number; //status nekretnine sif = 1
     prodaja: boolean;
     najam: boolean;
     lokacijaId: number;

@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-md-12">
             <dx-data-grid id="gridContainer"
-                [dataSource]="dataSource"
+                [dataSource]="nekretnine"
                 [remoteOperations]="false"
                 [allowColumnReordering]="true"
                 [rowAlternationEnabled]="true"
@@ -31,13 +31,15 @@
                 <dxo-grouping
                     [autoExpandAll]="false"
                 ></dxo-grouping>
-
-                <dxi-column dataField="naziv" caption="Naziv"></dxi-column>
-                <dxi-column dataField="opisKratko" caption="Opis" dataType="number" format="currency" alignment="right"></dxi-column>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                
+                <dxi-column dataField="oznakaNekretnine" [allowFiltering]="true" caption="Oznaka"></dxi-column>
+                <dxi-column dataField="naziv" [allowFiltering]="true" caption="Naziv"></dxi-column>
+                <dxi-column dataField="opisKratko" [allowFiltering]="true" caption="Opis" dataType="number"></dxi-column>
                 <dxi-column dataField="tipNekretnine" dataType="string"></dxi-column>
                 <dxi-column dataField="lokacijaId" dataType="string"></dxi-column>
                 <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell"></dxi-column>
-                <dxi-column dataField="aktivan" dataType="string"></dxi-column>   
+                <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" dataType="string"></dxi-column>   
                 <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate"></dxi-column>     
                 
                 <div *dxTemplate="let cellData of 'dateCell'">
@@ -45,7 +47,7 @@
                 </div>
 
                 <div *dxTemplate="let cellData of 'buttonTemplate'">
-                  <button type="button" class="btn btn-small btn-info">Izmjeni</button>
+                  <a type="button" class="btn btn-small btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.value]">Izmjeni</a>
                 </div>
 
                 <div *dxTemplate="let d of 'discountCellTemplate'">

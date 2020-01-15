@@ -36,13 +36,13 @@ export class GeneralService{
           })
     }
 
-    showSuccess(text:string){
+    showSuccess(text:string,  timeSpan: number = 1000){
         Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: text,
             showConfirmButton: true,
-            timer: 750
+            timer: timeSpan
           })
     }
 }
