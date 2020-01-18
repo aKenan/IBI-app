@@ -1,0 +1,19 @@
+.panel-body{
+    padding-top:1.5%
+}
+
+.nav-link{
+    cursor: pointer;    
+    color:#ef8157;
+}
+.nav-link:hover{
+    color:lightblue
+}
+
+.disabled{
+    cursor: not-allowed
+}
+
+.active{
+    cursor:default;
+}

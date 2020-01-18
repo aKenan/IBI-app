@@ -5,160 +5,146 @@
         <h5 class="card-title" style="display: inline-block;">{{titleText}}</h5>
         <!-- <a class="btn btn-success pull-right" [routerLink]="['/IBIAdminPanel/nekretnine']"><span class="fa fa-arrow-left"></span> Nazad</a> -->
       </div>
-      <form [formGroup]="nekretninaForm" (ngSubmit)="dodajAzurirajNekretninu()">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-12 ">
-            <nav>
-              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-                <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
-              </div>
-            </nav>
-            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-              </div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-              </div>
-              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-              </div>
-              <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': aktivniTab == 1}" (click)="aktivirajTab(1)">Osnovni podaci</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 2}" (click)="aktivirajTab(2)">Detalji</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 3}" (click)="aktivirajTab(3)">Kontakt podaci</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <form [formGroup]="nekretninaForm" (ngSubmit)="dodajAzurirajNekretninu()" *ngIf="aktivniTab == 1">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                      <label class="font-weight-bold mb-3 col-md-2">Naziv</label>
+                      <div class="col-md-4">
+                        <input type="text" name="naziv" class="form-control " formControlName="naziv" placeholder="" autocomplete="off" 
+                        [ngClass]="{ 'is-invalid': f.naziv.touched && f.naziv.errors }">            
+                      <div *ngIf="f.naziv.errors && f.naziv.touched" class="invalid-feedback">              
+                        <span *ngIf="f.naziv.errors.required">Unesite naziv</span>
+                      </div>
+                      </div>
+                      
+                      <label class="font-weight-bold mb-3 col-md-2" for="oznakaNekretnine">Oznaka nekretnine</label>
+                      <div class="col-md-4">
+                        <input type="text" name="oznakaNekretnine" class="form-control " formControlName="oznakaNekretnine" placeholder="" autocomplete="off" 
+                        [ngClass]="{ 'is-invalid': f.oznakaNekretnine.touched && f.oznakaNekretnine.errors }">            
+                      <div *ngIf="f.oznakaNekretnine.errors && f.oznakaNekretnine.touched" class="invalid-feedback">              
+                        <span *ngIf="f.oznakaNekretnine.errors.required">Unesite oznaku nekretnine</span>
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2">Tip nekretnine</label>
+                      <div class="col-md-4">
+                        <select class="form-control" formControlName="tipNekretnine" [ngClass]="{ 'is-invalid': f.tipNekretnine.touched && f.tipNekretnine.errors }">
+                          <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
+                        </select>                     
+                      <div *ngIf="f.tipNekretnine.errors && f.tipNekretnine.touched" class="invalid-feedback">              
+                        <span *ngIf="f.tipNekretnine.errors.required">Odaberite tip nekretnine</span>
+                      </div>
+                      </div>
+
+                      <label class="font-weight-bold col-md-2">Status nekretnine</label>
+                      <div class="col-md-4">
+                        <select class="form-control" formControlName="statusNekretnine" [ngClass]="{ 'is-invalid': f.statusNekretnine.touched && f.statusNekretnine.errors }">
+                          <option *ngFor="let elem of statusiNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
+                        </select>                          
+                      <div *ngIf="f.statusNekretnine.errors && f.statusNekretnine.touched" class="invalid-feedback">              
+                        <span *ngIf="f.statusNekretnine.errors.required">Odaberite status nekretnine</span>
+                      </div>
+                      </div>                
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2">Kraći opis</label>
+                      <div class="col-md-10">
+                        <textarea type="text" name="opisKratko" class="form-control " formControlName="opisKratko" placeholder="Unesite kraći opis" autocomplete="off" 
+                        [ngClass]="{ 'is-invalid': f.opisKratko.touched && f.opisKratko.errors }"></textarea>                               
+                      <div *ngIf="f.opisKratko.errors && f.opisKratko.touched" class="invalid-feedback">              
+                        <span *ngIf="f.opisKratko.errors.required">Unesite kraći opis</span>
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2">Detaljni opis</label>
+                      <div class="col-md-10">
+                        <textarea style="resize:vertical; max-height: inherit;" rows="5" name="opisDetaljno" class="form-control " formControlName="opisDetaljno" placeholder="Unesite detaljni opis" autocomplete="off" 
+                        [ngClass]="{ 'is-invalid': f.opisDetaljno.touched && f.opisDetaljno.errors }"></textarea>                               
+                      <div *ngIf="f.opisDetaljno.errors && f.opisDetaljno.touched" class="invalid-feedback">              
+                        <span *ngIf="f.opisDetaljno.errors.required">Unesite detaljni opis</span>
+                      </div>
+                      </div>
+                    </div>
+
+                    <app-lokacija [lokacijaId]="f.lokacijaId.value" (lokacijaSelected)="onLokacijaSelected($event)"></app-lokacija>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2">Adresa</label>
+                      <div class="col-md-10">
+                        <input type="text" name="adresa" class="form-control " formControlName="adresa" placeholder="" autocomplete="off" 
+                        [ngClass]="{ 'is-invalid': f.adresa.touched && f.adresa.errors }">            
+                      <div *ngIf="f.adresa.errors && f.adresa.touched" class="invalid-feedback">              
+                        <span *ngIf="f.adresa.errors.required">Unesite adresu</span>
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2">Važi od</label>
+                      <div class="col-md-4">
+                        <dx-date-box
+                            displayFormat="dd.MM.yyyy."
+                            name="vaziOd" formControlName="vaziOd" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
+                        </dx-date-box>
+                        <div *ngIf="f.vaziOd.errors && f.vaziOd.touched" class="invalid-feedback">              
+                          <span *ngIf="f.vaziOd.errors.required">Unesite datum važenja od</span>
+                        </div>
+                      </div>
+
+                      <label class="font-weight-bold col-md-2">Važi do</label>
+                      <div class="col-md-4">
+                        <dx-date-box
+                            displayFormat="dd.MM.yyyy."
+                            [min]="f.vaziOd.value"
+                            name="vaziOd" formControlName="vaziDo" [ngClass]="{ 'is-invalid': f.vaziDo.touched && f.vaziDo.errors }">
+                        </dx-date-box>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="font-weight-bold col-md-2"></label>
+                      <div class="col-md-2">
+                        <dx-check-box formControlName="prodaja"
+                            [width]="80"
+                            text="Prodaja"
+                        ></dx-check-box>
+                      </div>
+                      <div class="col-md-2">
+                        <dx-check-box formControlName="najam"
+                            [width]="80"
+                            text="Najam"
+                        ></dx-check-box>
+                      </div>
+                    </div>
+                  
+                </div>
               </div>
             </div>
-          
+            <div class="panel-footer text-right">
+              <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Potvrdi</button>
+              <a [routerLink]="['/IBIAdminPanel/nekretnine']" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Odustani</a>
           </div>
-
-          <div class="col-md-12">
-            
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Naziv</label>
-                <div class="col-md-4">
-                  <input type="text" name="naziv" class="form-control " formControlName="naziv" placeholder="" autocomplete="off" 
-                  [ngClass]="{ 'is-invalid': f.naziv.touched && f.naziv.errors }">            
-                 <div *ngIf="f.naziv.errors && f.naziv.touched" class="invalid-feedback">              
-                   <span *ngIf="f.naziv.errors.required">Unesite naziv</span>
-                 </div>
-                </div>
-                
-                <label class="font-weight-bold mb-3 col-md-2" for="oznakaNekretnine">Oznaka nekretnine</label>
-                <div class="col-md-4">
-                  <input type="text" name="oznakaNekretnine" class="form-control " formControlName="oznakaNekretnine" placeholder="" autocomplete="off" 
-                  [ngClass]="{ 'is-invalid': f.oznakaNekretnine.touched && f.oznakaNekretnine.errors }">            
-                 <div *ngIf="f.oznakaNekretnine.errors && f.oznakaNekretnine.touched" class="invalid-feedback">              
-                   <span *ngIf="f.oznakaNekretnine.errors.required">Unesite oznaku nekretnine</span>
-                 </div>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Tip nekretnine</label>
-                <div class="col-md-4">
-                  <select class="form-control" formControlName="tipNekretnine" [ngClass]="{ 'is-invalid': f.tipNekretnine.touched && f.tipNekretnine.errors }">
-                    <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
-                  </select>                     
-                 <div *ngIf="f.tipNekretnine.errors && f.tipNekretnine.touched" class="invalid-feedback">              
-                   <span *ngIf="f.tipNekretnine.errors.required">Odaberite tip nekretnine</span>
-                 </div>
-                </div>
-
-                <label class="font-weight-bold col-md-2">Status nekretnine</label>
-                <div class="col-md-4">
-                  <select class="form-control" formControlName="statusNekretnine" [ngClass]="{ 'is-invalid': f.statusNekretnine.touched && f.statusNekretnine.errors }">
-                    <option *ngFor="let elem of statusiNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
-                  </select>                          
-                 <div *ngIf="f.statusNekretnine.errors && f.statusNekretnine.touched" class="invalid-feedback">              
-                   <span *ngIf="f.statusNekretnine.errors.required">Odaberite status nekretnine</span>
-                 </div>
-                </div>                
-              </div>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Kraći opis</label>
-                <div class="col-md-10">
-                  <textarea type="text" name="opisKratko" class="form-control " formControlName="opisKratko" placeholder="Unesite kraći opis" autocomplete="off" 
-                  [ngClass]="{ 'is-invalid': f.opisKratko.touched && f.opisKratko.errors }"></textarea>                               
-                 <div *ngIf="f.opisKratko.errors && f.opisKratko.touched" class="invalid-feedback">              
-                   <span *ngIf="f.opisKratko.errors.required">Unesite kraći opis</span>
-                 </div>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Detaljni opis</label>
-                <div class="col-md-10">
-                  <textarea style="resize:vertical; max-height: inherit;" rows="5" name="opisDetaljno" class="form-control " formControlName="opisDetaljno" placeholder="Unesite detaljni opis" autocomplete="off" 
-                  [ngClass]="{ 'is-invalid': f.opisDetaljno.touched && f.opisDetaljno.errors }"></textarea>                               
-                 <div *ngIf="f.opisDetaljno.errors && f.opisDetaljno.touched" class="invalid-feedback">              
-                   <span *ngIf="f.opisDetaljno.errors.required">Unesite detaljni opis</span>
-                 </div>
-                </div>
-              </div>
-
-              <app-lokacija [lokacijaId]="f.lokacijaId.value" (lokacijaSelected)="onLokacijaSelected($event)"></app-lokacija>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Adresa</label>
-                <div class="col-md-10">
-                  <input type="text" name="adresa" class="form-control " formControlName="adresa" placeholder="" autocomplete="off" 
-                  [ngClass]="{ 'is-invalid': f.adresa.touched && f.adresa.errors }">            
-                 <div *ngIf="f.adresa.errors && f.adresa.touched" class="invalid-feedback">              
-                   <span *ngIf="f.adresa.errors.required">Unesite adresu</span>
-                 </div>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2">Važi od</label>
-                <div class="col-md-4">
-                  <dx-date-box
-                      displayFormat="dd.MM.yyyy."
-                      name="vaziOd" formControlName="vaziOd" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
-                  </dx-date-box>
-                  <div *ngIf="f.vaziOd.errors && f.vaziOd.touched" class="invalid-feedback">              
-                    <span *ngIf="f.vaziOd.errors.required">Unesite datum važenja od</span>
-                  </div>
-                </div>
-
-                <label class="font-weight-bold col-md-2">Važi do</label>
-                <div class="col-md-4">
-                  <dx-date-box
-                      displayFormat="dd.MM.yyyy."
-                      [min]="f.vaziOd.value"
-                      name="vaziOd" formControlName="vaziDo" [ngClass]="{ 'is-invalid': f.vaziDo.touched && f.vaziDo.errors }">
-                  </dx-date-box>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="font-weight-bold col-md-2"></label>
-                <div class="col-md-2">
-                  <dx-check-box formControlName="prodaja"
-                      [width]="80"
-                      text="Prodaja"
-                  ></dx-check-box>
-                </div>
-                <div class="col-md-2">
-                  <dx-check-box formControlName="najam"
-                      [width]="80"
-                      text="Najam"
-                  ></dx-check-box>
-                </div>
-              </div>
-            
-          </div>
-        </div>
+        </form>
       </div>
-      <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Potvrdi</button>
-        <a [routerLink]="['/IBIAdminPanel/nekretnine']" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Odustani</a>
-     </div>
-    </form>
     </div>
   </div>
 </div>

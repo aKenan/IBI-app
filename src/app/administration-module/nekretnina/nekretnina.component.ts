@@ -13,8 +13,11 @@ import { GeneralService } from '../../../services/generalService';
   styleUrls: ['./nekretnina.component.css']
 })
 export class NekretninaComponent implements OnInit {
+  aktivniTab: number;
+
   id: number = 0;
   titleText: string;
+  nekretnina : INekretnina = {id: 0, vaziOd: new Date(), prodaja:false, najam: false, aktivan:false};
   nekretninaForm : FormGroup;
   tipoviNekretnine: ISifarnik[];
   statusiNekretnine: ISifarnik[]; 
@@ -26,30 +29,47 @@ export class NekretninaComponent implements OnInit {
   ngOnInit() {
     this.getSifarnike();
     this.titleText = this.id == 0 ? "Dodaj novu nekretninu" : "Ažuriraj nekretninu";
-    this.setForm(null);
+    if(this.id > 0)
+    {
+      this.adminService.dajNekretninu(this.id).subscribe(
+        data => {
+          this.nekretnina = data;
+          this.setForm(data);
+        }
+      )
+    }
+    else
+      this.setForm(this.nekretnina);
   }
 
   get f() {return this.nekretninaForm.controls};
 
+  aktivirajTab(tab: number){
+    this.aktivniTab = tab;
+  }
+
   setForm(model : INekretnina){
-    if(model == null){//kreiranje
+    //if(model == null){//kreiranje
       this.nekretninaForm = this.fb.group({
-        id: [0, Validators.required],
-        oznakaNekretnine: ['', [Validators.required]],
-        naziv: ['', [Validators.required, Validators.minLength(5)]],
-        opisKratko: ['', [Validators.required, Validators.minLength(5)]],
-        opisDetaljno: ['', [Validators.required, Validators.minLength(5)]],
-        adresa: [''],
-        vaziOd: [new Date(), Validators.required],
-        vaziDo: [''],
-        tipNekretnine: new FormControl(null, [Validators.required]),
-        statusNekretnine: new FormControl(null, [Validators.required]),
-        prodaja: [false],
-        najam: [false],
-        lokacijaId: [null, Validators.required],
-        aktivan: [false]
+        id: [model.id, Validators.required],
+        oznakaNekretnine: [model.oznakaNekretnine, [Validators.required]],
+        naziv: [model.naziv, [Validators.required, Validators.minLength(5)]],
+        opisKratko: [model.opisKratko, [Validators.required, Validators.minLength(5)]],
+        opisDetaljno: [model.opisDetaljno, [Validators.required, Validators.minLength(5)]],
+        adresa: [model.adresa],
+        vaziOd: [model.vaziOd, Validators.required],
+        vaziDo: [model.vaziDo],
+        tipNekretnine: new FormControl(model.tipNekretnine, [Validators.required]),
+        statusNekretnine: new FormControl(model.statusNekretnine, [Validators.required]),
+        prodaja: [model.prodaja],
+        najam: [model.najam],
+        lokacijaId: [model.lokacijaId, Validators.required],
+        aktivan: [model.aktivan]
       })
-    }
+    //}else{
+
+    //}
+    this.aktivniTab = 1;
   }
 
   getSifarnike(){
@@ -77,6 +97,20 @@ export class NekretninaComponent implements OnInit {
             {
               this.gs.showSuccess("Uspješno ste kreirali nekretninu, nastavite sa postavkama...");
               this.router.navigate([`../IBIAdminPanel/nekretnina/${novaNekretnina.id}`]);     
+              this.id = novaNekretnina.id;
+            }            
+                     
+          }
+        )
+      }
+      else{ //AZURIRANJE
+        this.adminService.azurirajNekretninu(this.nekretninaForm.value).subscribe(
+          data =>{
+            let novaNekretnina = (data as INekretnina);
+
+            if(novaNekretnina.id > 0)
+            {
+              this.gs.showSuccess("Uspješno ste azurirali nekretninu");                
             }            
                      
           }

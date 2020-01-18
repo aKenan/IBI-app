@@ -13,7 +13,8 @@
                 [remoteOperations]="false"
                 [allowColumnReordering]="true"
                 [rowAlternationEnabled]="true"
-                [showBorders]="true">
+                [showBorders]="true"
+                [wordWrapEnabled]="true">
                 
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
@@ -33,13 +34,13 @@
                 ></dxo-grouping>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 
-                <dxi-column dataField="oznakaNekretnine" [allowFiltering]="true" caption="Oznaka"></dxi-column>
+                <dxi-column dataField="oznakaNekretnine" [allowFiltering]="true" caption="Oznaka" [width]="75"></dxi-column>
                 <dxi-column dataField="naziv" [allowFiltering]="true" caption="Naziv"></dxi-column>
-                <dxi-column dataField="opisKratko" [allowFiltering]="true" caption="Opis" dataType="number"></dxi-column>
-                <dxi-column dataField="tipNekretnine" dataType="string"></dxi-column>
-                <dxi-column dataField="lokacijaId" dataType="string"></dxi-column>
-                <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell"></dxi-column>
-                <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" dataType="string"></dxi-column>   
+                <dxi-column dataField="opisKratko" [allowFiltering]="true" caption="Opis"></dxi-column>
+                <dxi-column dataField="tipNekretnineText" dataType="string" caption="Tip nekretnine" [width]="100"></dxi-column>
+                <dxi-column dataField="lokacija.nazivFull" dataType="string" caption="Lokacija"></dxi-column>
+                <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell" caption="Datum kreiranja"></dxi-column>
+                <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" cellTemplate="checkTemplate" [width]="75"></dxi-column>   
                 <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate"></dxi-column>     
                 
                 <div *dxTemplate="let cellData of 'dateCell'">
@@ -48,6 +49,10 @@
 
                 <div *dxTemplate="let cellData of 'buttonTemplate'">
                   <a type="button" class="btn btn-small btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.value]">Izmjeni</a>
+                </div>
+
+                <div *dxTemplate="let cellData of 'checkTemplate'">
+                  <span [ngClass]="{'green fa fa-check' : cellData.value == true, 'red fa fa-times' : cellData.value == false}"></span>
                 </div>
 
                 <div *dxTemplate="let d of 'discountCellTemplate'">
