@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+      <div class="card-header">
+        <h5 class="card-title" style="display: inline-block;">Opisi</h5>
+        <a class="btn btn-success pull-right" (click)="noviOpisForm()"><span class="nc-icon nc-simple-add" ></span> Dodaj novi opis</a>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <opis-form [id]="odabraniId" (closeForm)="zatvoriFormu($event)" *ngIf="prikaziFormu"></opis-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

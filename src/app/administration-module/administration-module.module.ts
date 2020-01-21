@@ -18,11 +18,15 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
 import { LokacijaComponent } from './nekretnina/lokacija/lokacija.component';
 import { FormsModule } from '@angular/forms';
-import { OpisiComponent } from './nekretnina/opisi/opisi.component';
+import { OpisiComponent } from './opisi/opisi.component';
+import { OpisiFormComponent } from './opisi/opisi-form/opisi-form.component';
+
 
 
 @NgModule({
-  declarations: [LoginComponent, MainComponent, AdminLayoutComponent, SidebarComponent, NavbarComponent, NekretnineComponent, NekretninaComponent, LokacijaComponent, OpisiComponent],
+  declarations: [LoginComponent, MainComponent, 
+    AdminLayoutComponent, SidebarComponent, NavbarComponent, 
+    NekretnineComponent, NekretninaComponent, LokacijaComponent, OpisiComponent, OpisiFormComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,

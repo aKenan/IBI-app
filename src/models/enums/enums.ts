@@ -1,7 +1,8 @@
 export enum TipSifarnikaEnum {
     StatusNekretnine = 1,
     TipNekretnine = 2,
-    TipKontakta = 3
+    TipKontakta = 3,
+    TipVrijednosti = 4
 }
 export enum StatusNekretnine {
     Aktivna = 1,

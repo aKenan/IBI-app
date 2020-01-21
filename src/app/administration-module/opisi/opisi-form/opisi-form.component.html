@@ -1,0 +1,71 @@
+<form [formGroup]="opisForm" (ngSubmit)="dodajAzurirajOpis()" *ngIf="showForm">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="form-group row">
+          <label class="font-weight-bold mb-3 col-md-2">Naziv</label>
+          <div class="col-md-4">
+            <input type="text" name="naziv" class="form-control" formControlName="naziv" placeholder="Naziv opisa..." autocomplete="off" 
+            [ngClass]="{ 'is-invalid': f.naziv.touched && f.naziv.errors }">            
+            <div *ngIf="f.naziv.errors && f.naziv.touched" class="invalid-feedback">              
+              <span *ngIf="f.naziv.errors.required">Unesite naziv</span>
+            </div>
+          </div>
+          
+          <label class="font-weight-bold mb-3 col-md-2">Tip vrijednosti</label>
+          <div class="col-md-4">
+            <select class="form-control" formControlName="tipVrijednosti" [ngClass]="{ 'is-invalid': f.tipVrijednosti.touched && f.tipVrijednosti.errors }">
+              <option *ngFor="let elem of tipoviVrijednosti" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
+            </select>                          
+            <div *ngIf="f.tipVrijednosti.errors && f.tipVrijednosti.touched" class="invalid-feedback">              
+              <span *ngIf="f.tipVrijednosti.errors.required">Odaberite status nekretnine</span>
+            </div>
+          </div> 
+
+        </div>
+
+        <div class="form-group row">
+          <label class="font-weight-bold mb-3 col-md-2" for="opis">Opis</label>
+          <div class="col-md-4">
+            <textarea class="form-control" placeholder="Opis..." autocomplete="off" formControlName="opis"></textarea>
+          </div>
+
+          <label class="font-weight-bold mb-3 col-md-2">Mjerna jedinica</label>
+          <div class="col-md-4">
+            <input type="text" name="naziv" class="form-control" formControlName="mjernaJedinica" placeholder="Naziv opisa..." autocomplete="off">           
+            
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="font-weight-bold col-md-2"></label>
+                      <div class="col-md-2">
+                        <dx-check-box formControlName="obavezan"
+                            [width]="120"
+                            text="Obavezan"
+                        ></dx-check-box>
+                      </div>
+                      <div class="col-md-2">
+                        <dx-check-box formControlName="prikaziUFilteru"
+                            [width]="120"
+                            text="Prikaži u filteru"
+                        ></dx-check-box> 
+                      </div>
+                      <div class="col-md-2">
+                        <dx-check-box formControlName="aktivan"
+                            [width]="120"
+                            text="Aktivan"
+                        ></dx-check-box> 
+                      </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer text-right">
+    <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Potvrdi</button>
+    <a class="btn btn-danger pull-right" (click)="zatvoriFormu()"><i class="fa fa-times"></i> Odustani</a>
+  </div>
+  
+</form>

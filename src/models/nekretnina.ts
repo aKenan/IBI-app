@@ -20,12 +20,12 @@ export interface IKontakt
 export interface IOpisNekretnine
 {
     id: number;
-    naziv: string;
-    opis: string;
-    obavezan: boolean;
-    mjernaJedinica: string;
-    prikaziUFilteru: boolean | null;
-    tipVrijednosti: number;
+    naziv?: string;
+    opis?: string;
+    obavezan?: boolean;
+    mjernaJedinica?: string;
+    prikaziUFilteru?: boolean | null;
+    tipVrijednosti?: number;
     aktivan: boolean;
 }
 

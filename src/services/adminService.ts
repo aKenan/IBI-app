@@ -8,6 +8,7 @@ import { GeneralService } from "./generalService";
 import { ILoginModel, ILoginReturnModel } from "../models/login";
 import { ILokacija, IKontakt, INekretnina, IOpisNekretnine} from "../models/nekretnina";
 import { ISifarnik } from "../models/sifarnik";
+import { TipSifarnikaEnum } from "../models/enums/enums";
 
 @Injectable({
     providedIn: 'root'
@@ -110,6 +111,13 @@ export class AdminService{
 
     dajSveSifarnike() : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/admin/sifarnik/dajsve`), { headers : this.getHeaders() }).pipe(
+            map((response => response as ISifarnik[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajSifarnikPoTipu(tip : TipSifarnikaEnum) : Observable<any>{
+        return this.http.get(this.gs.getApiUrl(`/admin/sifarnik/dajpotipu/${tip}`), { headers : this.getHeaders() }).pipe(
             map((response => response as ISifarnik[]),
             catchError((error => throwError(error)  ))
             )
