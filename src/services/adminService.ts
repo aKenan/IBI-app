@@ -6,7 +6,7 @@ import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angul
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
 import { ILoginModel, ILoginReturnModel } from "../models/login";
-import { ILokacija, IKontakt, INekretnina, IOpisNekretnine} from "../models/nekretnina";
+import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika} from "../models/nekretnina";
 import { ISifarnik } from "../models/sifarnik";
 import { TipSifarnikaEnum } from "../models/enums/enums";
 
@@ -109,6 +109,27 @@ export class AdminService{
             )
     )}
 
+    dajOpiseZaNekretninu(idNekretnine: number): Observable<any>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajopisezanekretninu/${idNekretnine}`), { headers : this.getHeaders() }).pipe(
+            map((response => response as INekretninaOpisNekretnine[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dodajOpisZaNekretninu(model: INekretninaOpisNekretnine): Observable<any>{
+        return this.http.post(this.gs.getApiUrl('/admin/Nekretnina/dodajOpisNekretnine'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as INekretninaOpisNekretnine),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    azurirajOpisZaNekretninu(model: INekretninaOpisNekretnine): Observable<any>{
+        return this.http.put(this.gs.getApiUrl('/admin/Nekretnina/azurirajOpisNekretnine'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as INekretninaOpisNekretnine),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
     dajSveSifarnike() : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/admin/sifarnik/dajsve`), { headers : this.getHeaders() }).pipe(
             map((response => response as ISifarnik[]),
@@ -123,9 +144,64 @@ export class AdminService{
             )
     )}
 
+     uploadImage(file:File, id:number):Observable<any>{
+        const uploadData = new FormData();
+        uploadData.append('file', file, file.name);
+        return this.http.post(this.gs.getApiUrl(`/admin/Nekretnina/ucitajSliku`), uploadData, { headers : this.getImageHeaders(id) }).pipe(
+            map((response => response as ISifarnik[]),
+            catchError((error => throwError(error)  ))
+            ))
+     }      
+
+     uploadImageMultiple(files: IUcitanaSlika[], id:number):Observable<any>{
+        const uploadData = new FormData();
+        files.forEach(element => {
+            uploadData.append('file', element.file, element.file.name);
+        });
+        
+        return this.http.post(this.gs.getApiUrl(`/admin/Nekretnina/ucitajSlike`), uploadData, { headers : this.getImageHeaders(id) }).pipe(
+            map((response => response as ISifarnik[]),
+            catchError((error => throwError(error)  ))
+            ))
+     }      
+     
+     dajSliku(id:number) : Observable<Blob> {
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajsliku/${id}`), { headers : this.getHeaders(), responseType: 'blob' });
+      }
+
+    dajSlikeZaNekretninu(nekretninaId: number) : Observable<any>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajslikezanekretninu/${nekretninaId}`), { headers : this.getHeaders() }).pipe(
+            map((response => response as ISlika[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    postaviNaGlavnu(model: ISlika): Observable<any>{
+        return this.http.patch(this.gs.getApiUrl('/admin/Nekretnina/postavislikunaglavnu'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as ISlika),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    obrisiSliku(id:number): Observable<any>{
+        return this.http.delete(this.gs.getApiUrl(`/admin/Nekretnina/obrisiSliku/${id}`), { headers : this.getHeaders() }).pipe(
+            map((response => response),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
     getHeaders() : HttpHeaders{
         let headers = new HttpHeaders({
             'Authorization': "Bearer " + this.getToken()
+        });
+
+        return headers;
+    }
+
+    getImageHeaders(id: number) : HttpHeaders{
+        let headers = new HttpHeaders({
+            'Authorization': "Bearer " + this.getToken(),
+            'nekretninaId' : id.toString()
         });
 
         return headers;

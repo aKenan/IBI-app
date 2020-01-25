@@ -28,11 +28,12 @@ import { NgProgress, NgProgressComponent } from '@ngx-progressbar/core';
                 this.gs.showAdminLoader = true;
                 if (event instanceof HttpResponse) {
                     
-                }             
+                }   
+                console.log("INT EVENT: ", event);          
                 return event;
             }),
-            catchError((error: HttpErrorResponse) => {
-                this.gs.showError("Greška", error.error);
+            catchError((error: any) => {
+                this.gs.showError("Greška", error.error.error);
                 console.log('error--->>>', error);
                 let data = {};
                 data = {

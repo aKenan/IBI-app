@@ -2,6 +2,9 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/cor
 import { GeneralService } from '../../../services/generalService';
 import { AdminService } from '../../../services/adminService';
 import { Router } from '@angular/router';
+import { ROUTES } from './../sidebar/sidebar.component';
+import { Location} from '@angular/common';
+
 
 
 @Component({
@@ -15,16 +18,23 @@ export class NavbarComponent implements OnInit {
   private sidebarVisible: boolean;
   
   public isCollapsed = true;
+  location: Location;
+  nativeElement: any;
+  listTitles: import("c:/Projekti/IBI/ibi-app/src/app/administration-module/sidebar/sidebar.component").RouteInfo[];
 
-  constructor(private adminService: AdminService, private router: Router) { }
-
+  constructor(private adminService: AdminService, location:Location, private renderer : Renderer, private element : ElementRef, private router: Router) {
+    this.location = location;
+        this.nativeElement = element.nativeElement;
+        this.sidebarVisible = false;
+   }
+   //@ViewChild("admin-navbar", {static: false}) button;
   ngOnInit() {
-    // this.listTitles = ROUTES.filter(listTitle => listTitle);
-    //     var navbar : HTMLElement = this.element.nativeElement;
-    //     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-    //     this.router.events.subscribe((event) => {
-    //       this.sidebarClose();
-    //    });
+        this.listTitles = ROUTES.filter(listTitle => listTitle);
+         var navbar : HTMLElement = this.element.nativeElement;
+         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+         this.router.events.subscribe((event) => {
+           this.sidebarClose();
+        });
   }
   getTitle(){
     // var titlee = this.location.prepareExternalUrl(this.location.path());

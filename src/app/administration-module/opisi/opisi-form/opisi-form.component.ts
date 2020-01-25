@@ -30,7 +30,12 @@ export class OpisiFormComponent implements OnInit {
       this.setForm(this.opis)
     }
     else{
-      //...
+      this.adminService.dajOpisNekretnine(this.id).subscribe(
+        data =>{
+          this.opis = data as IOpisNekretnine;
+          this.setForm(data as IOpisNekretnine);
+        }
+      )
     }
   }
 
@@ -70,13 +75,22 @@ export class OpisiFormComponent implements OnInit {
       this.gs.setAllTouched(this.opisForm);
     }
     else{
-      this.adminService.dodajOpisNekretnine(this.opisForm.value).subscribe(
-        data =>{
-          this.gs.showSuccess("Uspješno ste dodali opis nekretnine");
-          this.closeForm.emit(true);
-        }
-      )
-      
+      if(this.opisForm.controls.id.value == 0)
+      {
+        this.adminService.dodajOpisNekretnine(this.opisForm.value).subscribe(
+          data =>{
+            this.gs.showSuccess("Uspješno ste dodali opis nekretnine");
+            this.closeForm.emit(true);
+          }
+        )
+      } else{
+        this.adminService.azurirajOpisNekretnine(this.opisForm.value).subscribe(
+          data =>{
+            this.gs.showSuccess("Uspješno ste ažurirali opis nekretnine");
+            this.closeForm.emit(true);
+          }
+        )
+      }
     }
   }
 

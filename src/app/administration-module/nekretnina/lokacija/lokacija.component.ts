@@ -48,8 +48,8 @@ export class LokacijaComponent implements OnInit {
       this.lokacijeL3 = this.lokacije.filter(p=>p.lokacijaParentId == odabranaLokacija.lokacijaParentId);
 
       this.lokacija2 = odabranaLokacija.lokacijaParentId;
-      var odabranaLokacijaL2 = this.lokacije.filter(p=>p.id == odabranaLokacija.lokacijaParentId)[0];
-      this.lokacijeL2 = this.lokacije.filter(p=>p.lokacijaParentId = odabranaLokacijaL2.lokacijaParentId);
+      var odabranaLokacijaL2 = this.lokacije.filter(p=>p.id == this.lokacija2)[0];
+      this.lokacijeL2 = this.lokacije.filter(p=>p.lokacijaParentId == odabranaLokacijaL2.lokacijaParentId);
 
       this.lokacija1 = odabranaLokacijaL2.lokacijaParentId;
       this.lokacijeL1 = this.lokacije.filter(p=>p.nivo == 1);

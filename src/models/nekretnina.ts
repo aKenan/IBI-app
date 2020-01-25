@@ -26,6 +26,7 @@ export interface IOpisNekretnine
     mjernaJedinica?: string;
     prikaziUFilteru?: boolean | null;
     tipVrijednosti?: number;
+    tipVrijednostiText?: string;
     aktivan: boolean;
 }
 
@@ -51,4 +52,34 @@ export interface INekretnina
 
     kontakti?: IKontakt[];
     lokacija?: ILokacija;
+}
+
+export interface INekretninaOpisNekretnine
+{
+    id: number;
+    nekretninaId: number;
+    opisId: number;
+    vrijednost: string;
+    aktivan: boolean;
+    opisNekretnine?: IOpisNekretnine;
+}
+
+export interface IUcitanaSlika
+{
+    file: File;
+    content: any;
+}
+
+export interface ISlikeSadrzaj{
+    file:any;
+    id: Number;
+}
+
+export interface ISlika
+{
+    id: number;
+    redniBroj: number;
+    glavna: boolean;
+    aktivan: boolean;
+    content: any;
 }

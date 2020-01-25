@@ -110,9 +110,9 @@ export class NekretninaComponent implements OnInit {
 
             if(novaNekretnina.id > 0)
             {
-              this.gs.showSuccess("Uspješno ste azurirali nekretninu");                
-            }            
-                     
+              this.gs.showSuccess("Uspješno ste azurirali nekretninu");
+              this.router.navigate([`../IBIAdminPanel/nekretnine/`]);                
+            }     
           }
         )
       }

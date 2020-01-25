@@ -1,0 +1,58 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <opis-nekretnine-form [model]="opis" (dismiss)="dismissModal($event)"></opis-nekretnine-form>
+</ng-template>
+
+<div class="card">
+  <div class="card-header">
+    <button class="btn btn-sm btn-info pull-right" (click)="open(content, null)"><span class="fa fa-plus"></span>Dodaj novi opis</button>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <dx-data-grid id="gridContainer"
+        [dataSource]="opisiNekretnina"
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="true"
+        [showBorders]="true"
+        [wordWrapEnabled]="true"
+        [columnAutoWidth] = "true">
+        
+        <dxo-paging [pageSize]="20"></dxo-paging>
+        <dxo-pager
+            [showPageSizeSelector]="true"
+            [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
+        <dxo-search-panel
+            [visible]="true"
+            [highlightCaseSensitive]="true"
+        ></dxo-search-panel>            
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        
+        <dxi-column dataField="opisNekretnine.naziv" [allowFiltering]="true" caption="Opis"></dxi-column>
+        <dxi-column dataField="vrijednost" [allowFiltering]="true" caption="Vrijednost"></dxi-column>            
+        <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" cellTemplate="checkTemplate" [width]="75" cellTemplate="checkTemplate" caption="Aktivan"></dxi-column>   
+        <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate" [width]="125"></dxi-column>     
+        
+        <div *dxTemplate="let cellData of 'dateCell'">
+          {{cellData.value | date: 'dd.MM.yyyy. u HH:mm'}}
+        </div>
+
+        <div *dxTemplate="let cellData of 'buttonTemplate'">
+          <a type="button" class="btn btn-sm btn-info" (click)="izmjeniForm(content, cellData.value)">Izmjeni</a>
+        </div>
+
+        <div *dxTemplate="let cellData of 'checkTemplate'">
+          <span class="fa" [ngClass]="{'green fa-check' : cellData.value == true, 'red fa-times' : cellData.value == false}"></span>
+        </div>
+    </dx-data-grid>
+      </div>
+    </div>
+  </div>
+</div>

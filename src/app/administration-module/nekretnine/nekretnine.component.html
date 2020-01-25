@@ -14,7 +14,9 @@
                 [allowColumnReordering]="true"
                 [rowAlternationEnabled]="true"
                 [showBorders]="true"
-                [wordWrapEnabled]="true">
+                [wordWrapEnabled]="true"
+                [columnAutoWidth] = "true"
+                >
                 
 
                 <dxo-paging [pageSize]="10"></dxo-paging>
@@ -48,11 +50,11 @@
                 </div>
 
                 <div *dxTemplate="let cellData of 'buttonTemplate'">
-                  <a type="button" class="btn btn-small btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.value]">Izmjeni</a>
+                  <a type="button" class="btn btn-sm btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.value]">Izmjeni</a>
                 </div>
 
                 <div *dxTemplate="let cellData of 'checkTemplate'">
-                  <span [ngClass]="{'green fa fa-check' : cellData.value == true, 'red fa fa-times' : cellData.value == false}"></span>
+                  <span class="fa" [ngClass]="{'green fa-check' : cellData.value == true, 'red fa-times' : cellData.value == false}"></span>
                 </div>
 
                 <div *dxTemplate="let d of 'discountCellTemplate'">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IOpisNekretnine } from '../../../models/nekretnina';
+import { AdminService } from '../../../services/adminService';
 
 @Component({
   selector: 'app-opisi',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class OpisiComponent implements OnInit {
   odabraniId = 0;
   prikaziFormu = false;
-  constructor() { }
+  opisi: IOpisNekretnine[];
+
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
+    this.dajOpise();
   }
 
   noviOpisForm(){
@@ -21,8 +26,22 @@ export class OpisiComponent implements OnInit {
   zatvoriFormu(refresh:boolean){
     this.prikaziFormu = false;
     if(refresh){
-      //osvjezi tabelu
+      this.dajOpise();
     }
+  }
+
+  izmjeniForm(id: number){
+    alert(id);
+    this.odabraniId = id;
+    this.prikaziFormu = true;
+  }
+
+  dajOpise(){
+    this.adminService.dajSveOpise().subscribe(
+      data =>{
+        this.opisi = data as IOpisNekretnine[];
+      }
+    )
   }
 
 }

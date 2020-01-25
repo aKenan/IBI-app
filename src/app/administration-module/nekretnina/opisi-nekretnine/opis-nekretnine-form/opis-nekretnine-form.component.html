@@ -1,0 +1,41 @@
+<form [formGroup]="opisNekretnineForm" (ngSubmit)="dodajAzurirajOpis()" *ngIf="showForm">      
+  <div class="modal-body">   
+    <div class="row">
+      <div class="col-md-12">
+          <div class="form-group">
+            <label class="control-label" for="dateOfBirth">Vrsta opisa</label>
+            <div class="input-group">
+              <select class="form-control" formControlName="opisId" [ngClass]="{ 'is-invalid': f.opisId.touched && f.opisId.errors }">
+                <option *ngFor="let elem of opisi" [value]="elem.id">{{elem.naziv}}</option>                                                                
+              </select>
+              <div *ngIf="f.opisId.errors && f.opisId.touched" class="invalid-feedback">              
+                <span *ngIf="f.opisId.errors.required">Odaberite vrstu opisa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="dateOfBirth">Vrijednost</label>
+            <div class="input-group">              
+              <input type="text" class="form-control" formControlName="vrijednost" [ngClass]="{ 'is-invalid': f.vrijednost.touched && f.vrijednost.errors }"/>
+              <div *ngIf="f.vrijednost.errors && f.vrijednost.touched" class="invalid-feedback">              
+                <span *ngIf="f.vrijednost.errors.required">Unesite vrijednost</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <dx-check-box formControlName="aktivan"
+                            [width]="120"
+                            text="Aktivan"
+                        ></dx-check-box>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="odustani()">Odustani</button>
+    <button type="submit" class="btn btn-success">Potvrdi</button>
+  </div>
+</form>

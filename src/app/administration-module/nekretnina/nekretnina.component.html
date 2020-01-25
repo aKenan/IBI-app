@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="card card-body">
       <div class="panel-heading">
         <h5 class="card-title" style="display: inline-block;">{{titleText}}</h5>
         <!-- <a class="btn btn-success pull-right" [routerLink]="['/IBIAdminPanel/nekretnine']"><span class="fa fa-arrow-left"></span> Nazad</a> -->
@@ -14,6 +14,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 3}" (click)="aktivirajTab(3)">Kontakt podaci</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 4}" (click)="aktivirajTab(4)">Slike</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -144,6 +147,24 @@
               <a [routerLink]="['/IBIAdminPanel/nekretnine']" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Odustani</a>
           </div>
         </form>
+
+        <opisi-nekretnine [nekretninaId]="id" *ngIf="aktivniTab == 2 && id > 0 "></opisi-nekretnine>
+
+        <slike *ngIf="aktivniTab==4 && id>0" [id]="id"></slike>
+
+        <!-- <div *>
+          <input
+                style="display: none"
+                type="file" (change)="onFileChanged($event)"
+                #fileInput>
+              <button (click)="fileInput.click()">Select File</button>
+              <button (click)="onUpload()">Upload!</button>
+
+
+              <img [src]="imageToShow"
+                alt="Place image title">
+        </div> -->
+        
       </div>
     </div>
   </div>
