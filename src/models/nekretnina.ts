@@ -83,3 +83,11 @@ export interface ISlika
     aktivan: boolean;
     content: any;
 }
+
+export interface IOpciPodaci
+{
+    novePoruke: number;
+    aktivne: number;
+    naPonudi: number;
+    prodane: number;        
+}

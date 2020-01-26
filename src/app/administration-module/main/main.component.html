@@ -1,3 +1,111 @@
 
 <a href="https://demos.creative-tim.com/paper-dashboard-angular/#/icons">Dokumentacija za template</a>
-<h1>main componenta</h1>
+<div class="row" *ngIf="opciPodaci">
+<div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-email-85 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Nove poruke</p>
+              <p class="card-title"> {{opciPodaci.novePoruke}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-refresh"></i> Osvježi
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-check-2 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Broj aktivnih</p>
+              <p class="card-title"> {{opciPodaci.aktivne}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <!-- <div class="stats">
+          <i class="fa fa-calendar-o"></i> Last day
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-money-coins text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Na ponudi</p>
+              <p class="card-title"> {{opciPodaci.naPonudi}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <!-- <div class="stats">
+          <i class="fa fa-calendar-o"></i> Last day
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-favourite-28 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Broj prodanih</p>
+              <p class="card-title"> {{opciPodaci.prodane}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <!-- <div class="stats">
+          <i class="fa fa-calendar-o"></i> Last day
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,18 +11,17 @@ export const ROUTES: RouteInfo[] = [
   { path: '/IBIAdminPanel',     title: 'Admin početna',         icon:'nc-bank',       class: '' },
   { path: '/IBIAdminPanel/nekretnine',    title: 'Nekretnine',        icon:'nc-shop',    class: '' },
   { path: '/IBIAdminPanel/opisi',    title: 'Opisi',        icon:'nc-spaceship',    class: '' },
-  // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
+  { path: '/IBIAdminPanel/Poruke',          title: 'Poruke',              icon:'nc-bell-55',      class: '' },
   // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
   // { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
   // { path: '/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
   // { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
-  // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
+  // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' }, 
 ];
 
 @Component({
   selector: 'admin-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
   public menuItems: any[];

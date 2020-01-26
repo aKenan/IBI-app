@@ -16,8 +16,9 @@
     ],
     "paths": {
       "jszip": [
-        "../node_modules/jszip/dist/jszip.js"
-      ]
+        "../node_modules/jszip/dist/jszip.js"		
+      ],
+	  "@angular/*": [ "node_modules/@angular/*"]
     },
     "lib": [
       "es2018",

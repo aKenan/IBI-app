@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from '../../../../services/adminService';
 import { ISlika, ISlikeSadrzaj } from '../../../../models/nekretnina';
+import Swal from 'sweetalert2';
+import { GeneralService } from '../../../../services/generalService';
 
 @Component({
   selector: 'slike',
@@ -9,9 +11,13 @@ import { ISlika, ISlikeSadrzaj } from '../../../../models/nekretnina';
 })
 export class SlikeComponent implements OnInit {
   @Input() id : number;
+  dodajSlikePrikazi : boolean = false;
   slike : ISlika[] = [];
   slikeSadrzaj : ISlikeSadrzaj[] = [];
-  constructor(private adminService: AdminService) { }
+
+  constructor(private adminService: AdminService, private gs: GeneralService) { }
+
+  get glavnaSlika(){return this.slike.length > 0 && this.slike.filter(p=>p.glavna).length > 0}
 
   ngOnInit() {
     this.dajSlikeZaNekretninu();
@@ -70,6 +76,45 @@ export class SlikeComponent implements OnInit {
     else{
       return null;
     }
+  }
+
+  obrisiSliku(id:number) {
+    Swal.fire({
+      title: 'Da li ste sigurni?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Da!',
+      cancelButtonText: "Odustani"
+    }).then((result) => {
+      if (result.value) {
+        this.adminService.obrisiSliku(id).subscribe(
+          data =>{
+            this.gs.showSuccess("Uspješno ste obrisali sliku!");
+            //this.dajSlikeZaNekretninu();
+            var elem = this.slike.filter(p=>p.id == id)[0];
+            var slika = this.slike.indexOf(elem, 0);
+            this.slike.splice(slika,1);
+          }
+        )
+      }
+    })
+  }
+
+  postaviZaGlavnu(id:number)
+  {
+    let slika = this.slike.filter(p=>p.id == id)[0];
+    this.adminService.postaviNaGlavnu(slika).subscribe(
+      data => {
+        this.slike.forEach(element => {
+          element.glavna = false;
+        });
+
+        this.slike.filter(p=>p.id == id)[0].glavna = true;
+      }
+    )
   }
   
 }

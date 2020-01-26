@@ -2,14 +2,17 @@ import Swal, { SweetAlertResult } from 'sweetalert2'
 import { Injectable, ViewChild, ElementRef } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 import { NgProgressComponent } from '@ngx-progressbar/core';
+import { Title }     from '@angular/platform-browser';
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class GeneralService{
-    rootApi : string = 'http://localhost:15079/api';
+    //rootApi : string = 'http://localhost:15079/api';
     //rootApi : string = "http://192.168.0.110/api"; //linux VM
+    rootApi : string = "http://192.168.0.105:81/api";
+
     public showAdminLoader : boolean = false;
 
     public getApiUrl(urlPart : string) : string{
@@ -45,5 +48,7 @@ export class GeneralService{
             showConfirmButton: true,
             timer: timeSpan
           })
+
+          
     }
 }

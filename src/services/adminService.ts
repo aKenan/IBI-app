@@ -6,7 +6,7 @@ import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angul
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
 import { ILoginModel, ILoginReturnModel } from "../models/login";
-import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika} from "../models/nekretnina";
+import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika, IOpciPodaci} from "../models/nekretnina";
 import { ISifarnik } from "../models/sifarnik";
 import { TipSifarnikaEnum } from "../models/enums/enums";
 
@@ -186,6 +186,13 @@ export class AdminService{
     obrisiSliku(id:number): Observable<any>{
         return this.http.delete(this.gs.getApiUrl(`/admin/Nekretnina/obrisiSliku/${id}`), { headers : this.getHeaders() }).pipe(
             map((response => response),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajOpcePodatke() : Observable<IOpciPodaci>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajopcepodatke`), { headers : this.getHeaders() }).pipe(
+            map((response => response as IOpciPodaci),
             catchError((error => throwError(error)  ))
             )
     )}
