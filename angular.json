@@ -26,11 +26,13 @@
               "src/styles.css",
 			  "node_modules/bootstrap/dist/css/bootstrap.min.css",
 			  "node_modules/font-awesome/css/font-awesome.css",
-			  "src/assets/scss/paper-dashboard.scss",
 			  "node_modules/devextreme/dist/css/dx.common.css",
               "node_modules/devextreme/dist/css/dx.light.css",
             ],
-            "scripts": [],
+            "scripts": [
+				"node_modules/jquery/dist/jquery.min.js",
+				"node_modules/bootstrap/dist/js/bootstrap.min.js"
+			],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -88,11 +90,13 @@
               "src/styles.css",
 			  "node_modules/bootstrap/dist/css/bootstrap.min.css",
 			  "node_modules/font-awesome/css/font-awesome.css",
-			  "src/assets/scss/paper-dashboard.scss",
 			  "node_modules/devextreme/dist/css/dx.common.css",
               "node_modules/devextreme/dist/css/dx.light.css",
             ],
-            "scripts": [],
+            "scripts": [
+				"node_modules/jquery/dist/jquery.min.js",
+				"node_modules/bootstrap/dist/js/bootstrap.min.js"
+			],
             "assets": [
               "src/favicon.ico",
               "src/assets"

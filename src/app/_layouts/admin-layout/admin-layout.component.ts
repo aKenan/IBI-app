@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GeneralService } from '../../../services/generalService';
 
 
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
+  encapsulation : ViewEncapsulation.None,
   styleUrls: ['./admin-layout.component.css']
 })
 export class AdminLayoutComponent implements OnInit {

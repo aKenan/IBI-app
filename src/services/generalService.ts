@@ -9,9 +9,9 @@ import { Title }     from '@angular/platform-browser';
   })
 
 export class GeneralService{
-    //rootApi : string = 'http://localhost:15079/api';
+    rootApi : string = 'http://localhost:15079/api';
     //rootApi : string = "http://192.168.0.110/api"; //linux VM
-    rootApi : string = "http://192.168.0.105:81/api";
+    //rootApi : string = "http://192.168.0.105:81/api";
 
     public showAdminLoader : boolean = false;
 

@@ -1,3 +1,20 @@
-<p>
-  main-public works!
-</p>
+<div class="container div-center">
+  <div class="row pretraga">
+    <div class="odabir">
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 0" [ngClass]="{'btn-outline-primary' : tipProdaje != 0, 'btn-primary' : tipProdaje == 0}">Sve</button>
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 1" [ngClass]="{'btn-outline-primary' : tipProdaje != 1, 'btn-primary' : tipProdaje == 1}">Prodaja</button>
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 2" [ngClass]="{'btn-outline-primary' : tipProdaje != 2, 'btn-primary' : tipProdaje == 2}">Najam</button>      
+    </div>    
+    <div class="row pretraga-forma  active-cyan-3 active-cyan-4">      
+      <input type="text" [(ngModel)]="pojam" class="form-control" placeholder="pojam za pretragu npr: stan vogošća" aria-label="Search">
+      <button type="submit" class="btn btn-primary" (click)="pretraga()"><i class="fa fa-search" ></i></button>
+    </div>
+    <div class="row odabir">      
+      <select class="form-control" [(ngModel)]="tipNekretnine">
+        <option [value]="'0'" selected>Svi tipovi nekretnina</option>
+        <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
+      </select>
+    </div>
+    
+  </div>
+</div>

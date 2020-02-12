@@ -6,3 +6,153 @@
 .red{
     color:red
 }
+
+.topBar{
+    background-color: #274abb;
+}
+
+.topBar .left{
+    color:#fff;
+    width: 65%;
+    display: inline-block;
+    padding: 4px;
+}
+
+.topBar .right{
+    color:#fff;
+    float: right;
+    padding: 4px;
+}
+.topBar ul{
+    margin-bottom: 0;
+}
+.topBar .social a{
+    color:#fff;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    transform: scale(1);
+    margin-right: 0;
+}
+
+
+.topBar li{
+    display: inline;
+    list-style-type: none;
+    padding: 2px;
+    margin: 0 20px 0 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#header {
+    position: relative;
+    z-index: 999;
+    padding: 25px 0 14px 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.header-content{
+    display: inline-block;
+}
+
+.header-content .logo{
+    margin-right: 40px;
+    float:left;
+}
+
+#navigation{
+    position: relative;
+    display: block;
+    float: left;
+}
+
+#navigation ul{
+    list-style: none;
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#navigation.style-1 .current {
+	background-color: transparent;
+	border: 1px solid #66676b;
+	color: #66676b;
+	padding: 5px 15px;
+	border-radius: 3px;
+}
+
+#navigation.style-1 .current:after { opacity: 1; }
+
+#navigation.style-1 ul li {
+	transition: all 0.25s;
+	border-radius: 3px;
+}
+
+#navigation.style-1 ul li:hover {
+	background-color: #66676b;
+	color: #fff;
+}
+
+#navigation.style-1 ul li:hover a { color: #fff; }
+
+#navigation.style-1 ul a {
+	font-size: 15px;
+	line-height: 32px;
+	padding: 6px 16px;
+}
+
+#navigation.style-1 ul li { margin: 0 5px; }
+
+#navigation.style-1 ul ul li { margin: 0; border-radius: 0; }
+
+#navigation.style-1 ul ul li:first-child { border-radius: 3px 3px 0 0; }
+#navigation.style-1 ul ul li:last-child { border-radius: 0 0 3px 3px; }
+
+/* .nav-item{
+    border: 1px solid inherit;
+    border-radius: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.nav-item:hover{
+    border: 1px solid black;
+    background-color: #274abb;
+    color: #fff;
+}
+
+.nav-link:hover{
+    color:#fff
+}
+
+.nav-item li a{
+    color:black
+}
+
+.primary-color{
+    background-color: blue;
+}
+
+.nav-link{
+    color:#58585a
+} */
+
+.pretraga{
+    padding: 8px
+}
+
+.social-part .fa{
+    padding-right:20px;
+}
+ul li a{
+    margin-right: 20px;
+}
+
+.div-center{
+    display: flex; justify-content: center;;
+}
