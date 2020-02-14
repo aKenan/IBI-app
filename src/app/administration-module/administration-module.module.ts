@@ -27,6 +27,17 @@ import { SlikeUploadComponent } from './nekretnina/slike/slike-upload/slike-uplo
 import { DragDropDirective } from './dragdrop.directive';
 import { SidebarComponent } from '../administration-module/sidebar/sidebar.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 @NgModule({
   declarations: [LoginComponent, MainComponent, 
     AdminLayoutComponent, NavbarComponent, 
@@ -45,12 +56,18 @@ import { SidebarComponent } from '../administration-module/sidebar/sidebar.compo
     DxDateBoxModule,   
     DxCheckBoxModule,
     FormsModule,
+    BsDropdownModule.forRoot(),
     NgProgressModule.withConfig({
       spinnerPosition: "left",
       color: "#f71cff"
     }),
-    NgProgressHttpModule
+    NgProgressHttpModule,
+    PerfectScrollbarModule
   ],
-  providers:[    ]
+  providers:[ {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }   ],
+  bootstrap: [AdminLayoutComponent]
 })
 export class AdministrationModuleModule { }

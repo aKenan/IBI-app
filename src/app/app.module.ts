@@ -8,6 +8,8 @@ import { PublicLayoutComponent } from './_layouts/public-layout/public-layout.co
 import { EmptyLayoutComponent } from './_layouts/empty-layout/empty-layout.component';
 import { HttpConfigInterceptor } from './administration-module/httpconfig.interceptor';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HttpConfigInterceptor } from './administration-module/httpconfig.interc
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule
   ],

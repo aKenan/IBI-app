@@ -1,19 +1,17 @@
-<link rel="stylesheet" href="/assets/scss/paper-dashboard.scss">
 <div id="overlay" *ngIf="showLoader">
     <div class="spinner"></div>
     <br/> 
     Učitavam...
 </div>
 <ng-progress #progressBar (started)="onStarted()" (completed)="onCompleted()"></ng-progress> 
-<div class="wrapper">
-  <div class="sidebar" data-color="white" data-active-color="danger">
-      <admin-sidebar></admin-sidebar>
-  </div>
-  <div class="main-panel">
-      
-      <admin-navbar></admin-navbar>
-      <div class="content">
-        
+<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="toggleSidebar()" style="cursor: pointer;">
+    <i class="fas fa-bars" style="color:white"></i>
+  </a>
+  <admin-sidebar></admin-sidebar>
+  
+  <main class="page-content">            
+      <div class="container">        
           <router-outlet></router-outlet>        
       </div>
       <!-- <button (click)="progressBar.start()">
@@ -23,5 +21,5 @@
         stop
       </button> -->
       <!-- <footer-cmp></footer-cmp> -->
-  </div>
+  </main >
 </div>

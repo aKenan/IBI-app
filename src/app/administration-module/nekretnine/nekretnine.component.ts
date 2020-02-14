@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/adminService';
 import { INekretnina } from '../../../models/nekretnina';
 import { GeneralService } from '../../../services/generalService';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -28,6 +29,32 @@ export class NekretnineComponent implements OnInit {
       }
       
     )
+  }
+
+  aktivirajNekretninu(id:number){
+    let mod = this.nekretnine.filter(p=>p.id == id)[0];
+
+    Swal.fire({
+      title: 'Da li ste sigurni? Nekretnina će biti vidljiva posjetiocima stranice',
+      text: "",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Da!',
+      cancelButtonText: "Odustani"
+    }).then((result) => {
+      if (result.value) {
+        this.adminService.aktivirajNekretninu(mod).subscribe(
+            data => {
+              this.dajNekretnine();
+              this.generalService.showSuccess("Uspješno ste aktivirali nekretninu", 2000);
+            }
+          )
+        }
+    })
+   
+  
   }
 
 }

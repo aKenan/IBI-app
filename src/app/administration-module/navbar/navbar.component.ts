@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/cor
 import { GeneralService } from '../../../services/generalService';
 import { AdminService } from '../../../services/adminService';
 import { Router } from '@angular/router';
-import { ROUTES } from './../sidebar/sidebar.component';
+//import { ROUTES } from './../sidebar/sidebar.component';
 import { Location} from '@angular/common';
 
 
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
    }
    //@ViewChild("admin-navbar", {static: false}) button;
   ngOnInit() {
-        this.listTitles = ROUTES.filter(listTitle => listTitle);
+        //this.listTitles = ROUTES.filter(listTitle => listTitle);
          var navbar : HTMLElement = this.element.nativeElement;
          this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
          this.router.events.subscribe((event) => {

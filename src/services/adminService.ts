@@ -60,6 +60,27 @@ export class AdminService{
             )
     )}
 
+    aktivirajNekretninu(model:INekretnina) : Observable<any>{
+        return this.http.patch(this.gs.getApiUrl('/admin/Nekretnina/aktivirajNekretninu'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+        )}
+
+    dektivirajNekretninu(model:INekretnina) : Observable<any>{
+        return this.http.patch(this.gs.getApiUrl('/admin/Nekretnina/deaktivirajNekretninu'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+        )}
+
+    obrisiNekretninu(id:number) : Observable<any>{
+        return this.http.delete(this.gs.getApiUrl(`/admin/Nekretnina/obrisiNekretninu/${id}`),  { headers : this.getHeaders() }).pipe(
+            map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+        )}
+
     dajSveLokacije() : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/admin/lokacija`), { headers : this.getHeaders() }).pipe(
             map((response => response as ILokacija[]),
@@ -239,6 +260,7 @@ export class AdminService{
         localStorage.removeItem('IBI_NAME');
         localStorage.removeItem('IBI_LASTNAME');
         localStorage.removeItem('IBI_VALIDTO');
+        window.location.reload();
     }    
 
 }

@@ -31,7 +31,6 @@ export class OpisiComponent implements OnInit {
   }
 
   izmjeniForm(id: number){
-    alert(id);
     this.odabraniId = id;
     this.prikaziFormu = true;
   }
