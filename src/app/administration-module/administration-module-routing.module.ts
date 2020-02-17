@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from '../_layouts/admin-layout/admin-layout.comp
 import { NekretnineComponent } from './nekretnine/nekretnine.component';
 import { NekretninaComponent } from './nekretnina/nekretnina.component';
 import { OpisiComponent } from './opisi/opisi.component';
+import { PorukeComponent } from './poruke/poruke.component';
 
 const routes: Routes = [
   {path: '', component: AdminLayoutComponent, canActivate: [AuthGuard],
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path : '', component: MainComponent},
       { path: 'nekretnine', component:NekretnineComponent },
       { path: 'nekretnina/:id', component:NekretninaComponent },
-      { path: 'opisi', component: OpisiComponent}
+      { path: 'opisi', component: OpisiComponent},
+      { path: 'poruke', component:PorukeComponent}
     ]
   },
   {path: 'login', component:LoginComponent, pathMatch: 'full'}

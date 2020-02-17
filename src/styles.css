@@ -188,3 +188,8 @@ body {
     opacity: .5;
   
   }
+
+  .form-footer{
+    border-top: 1px solid lightgray;
+    padding: 4px 4px 4px 4px;
+  }

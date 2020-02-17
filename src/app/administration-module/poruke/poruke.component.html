@@ -1,0 +1,105 @@
+<ng-template #porukaModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Poruka</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <poruka-detalji [poruka]="odabranaPoruka"></poruka-detalji>
+</ng-template>
+
+<div class="card">
+  <div class="card-header">
+    PORUKE
+  </div>
+  <div class="card-header" style="justify-content: right; display: flex;">
+    <button class="btn btn-info" (click)="dajPoruke()" title="Osvježi"><i class="fa fa-refresh"></i></button>
+    <!-- <button class="btn btn-info" (click)="dajPoruke()">Postavi sve na "procitano"</button>
+    <button class="btn btn-info" (click)="dajPoruke()">Postavi sve na "odgovoreno"</button> -->
+  </div>
+  <div class="card-body">
+    <dx-data-grid id="gridContainer"
+                [dataSource]="poruke"
+                [remoteOperations]="false"
+                [allowColumnReordering]="true"
+                [rowAlternationEnabled]="true"
+                [showBorders]="true"
+                [wordWrapEnabled]="true"
+                [columnAutoWidth] = "true">
+                
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager
+                    [showPageSizeSelector]="true"
+                    [allowedPageSizes]="[10, 25, 50, 100]"
+                ></dxo-pager>
+                <dxo-search-panel
+                    [visible]="true"
+                    [highlightCaseSensitive]="true"
+                ></dxo-search-panel>
+                <dxo-group-panel
+                    [visible]="false"
+                ></dxo-group-panel>
+                <dxo-grouping
+                    [autoExpandAll]="false"
+                ></dxo-grouping>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                
+                /*
+                naziv: string;
+                telefon: string;
+                email: string;
+                sadrzaj: string;
+                odgovorena: boolean;
+                procitana: boolean;
+                */
+                <dxi-column [allowFiltering]="true" caption="Naziv pošiljaoca" [width]="200" cellTemplate="nazivTemplate"></dxi-column>
+                <dxi-column dataField="odgovorena" [allowFiltering]="true" caption="Odgovorena" cellTemplate="checkTemplate"></dxi-column>
+                <dxi-column dataField="procitana" [allowFiltering]="true" caption="Pročitana" cellTemplate="checkTemplate"></dxi-column>
+                <dxi-column dataField="nekretnina.naziv" [allowFiltering]="true" caption="Nekretnina"></dxi-column>
+                <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell" caption="Datum kreiranja"></dxi-column> 
+                <dxi-column caption="#" cellTemplate="buttonTemplate"[width]="150"></dxi-column>     
+                
+                <div *dxTemplate="let cellData of 'nazivTemplate'">
+                  <span [ngClass]="{ 'bold' : cellData.data.procitana == false}">{{cellData.data.naziv}}</span>
+                </div>
+
+                <div *dxTemplate="let cellData of 'dateCell'">
+                  {{cellData.value | date: 'dd.MM.yyyy. u HH:mm'}}
+                </div>
+
+                <div *dxTemplate="let cellData of 'buttonTemplate'">                  
+                  <a type="button" class="btn btn-sm btn-success" (click)="procitajPoruku(porukaModal, cellData.data.id)" title="Pročitaj poruku"><i class="fa fa-eye"></i></a>   
+                  <a type="button" class="btn btn-sm btn-info"  (click)="odgovoriPoruku(cellData.data.id)" title="Odgovori poruku"><i class="fa fa-reply"></i></a>               
+                  <a type="button" class="btn btn-sm btn-danger" (click)="obrisiPoruku(cellData.data.id)" title="Obriši poruku"><i class="fa fa-times"></i></a>
+                </div>
+
+                <div *dxTemplate="let cellData of 'checkTemplate'">
+                  <span class="fa" [ngClass]="{'green fa-check' : cellData.value == true, 'red fa-times' : cellData.value == false}"></span>
+                </div>
+
+                <div *dxTemplate="let d of 'discountCellTemplate'">
+                      <div class="chart-cell">
+                          <dx-bullet
+                              [showTarget]="false"
+                              [showZeroLevel]="true"
+                              [startScaleValue]="0"
+                              [endScaleValue]="100"
+                              [value]="d.value * 100">
+                              <dxo-size [width]="150" [height]="35"></dxo-size>
+                              <dxo-tooltip
+                                  [enabled]="true"
+                                  [paddingTopBottom]="2"
+                                  [customizeTooltip]="customizeTooltip">
+                                  <dxo-font [size]="18"></dxo-font>
+                              </dxo-tooltip>
+                              <dxo-margin
+                                  [top]="5"
+                                  [bottom]="0"
+                                  [left]="5"
+                              ></dxo-margin>
+                          </dx-bullet>
+                      </div>
+                  </div>
+            </dx-data-grid>
+  </div>
+</div>

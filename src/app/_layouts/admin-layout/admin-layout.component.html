@@ -4,14 +4,14 @@
     Učitavam...
 </div>
 <ng-progress #progressBar (started)="onStarted()" (completed)="onCompleted()"></ng-progress> 
-<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
+<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}" style="background-color: #d4d4d4">
   <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="toggleSidebar()" style="cursor: pointer;">
     <i class="fas fa-bars" style="color:white"></i>
   </a>
   <admin-sidebar></admin-sidebar>
   
-  <main class="page-content">            
-      <div class="container">        
+  <main class="page-content"  >            
+      <div class="container-fluid">        
           <router-outlet></router-outlet>        
       </div>
       <!-- <button (click)="progressBar.start()">

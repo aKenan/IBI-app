@@ -1,8 +1,10 @@
-import Swal, { SweetAlertResult } from 'sweetalert2'
+import Swal, { SweetAlertResult, SweetAlertIcon } from 'sweetalert2'
 import { Injectable, ViewChild, ElementRef } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 import { NgProgressComponent } from '@ngx-progressbar/core';
 import { Title }     from '@angular/platform-browser';
+import { Observable, observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -48,7 +50,23 @@ export class GeneralService{
             showConfirmButton: true,
             timer: timeSpan
           })
+    }
 
-          
+    showConfirm(text:string, icon:SweetAlertIcon) : Observable<any>{
+      return Observable.create((observer : any) =>{
+        Swal.fire({
+          title: '',
+          text: text,
+          icon: icon, //'success' | 'error' | 'warning' | 'info' | 'question'
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Da!',
+          cancelButtonText: "Odustani"
+        }).then((result) => {
+          observer.next(result.value);
+        })
+      })
+      
     }
 }

@@ -9,6 +9,7 @@ import { ILoginModel, ILoginReturnModel } from "../models/login";
 import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika, IOpciPodaci} from "../models/nekretnina";
 import { ISifarnik } from "../models/sifarnik";
 import { TipSifarnikaEnum } from "../models/enums/enums";
+import { IPorukaAdmin } from "../models/admin";
 
 @Injectable({
     providedIn: 'root'
@@ -214,6 +215,41 @@ export class AdminService{
     dajOpcePodatke() : Observable<IOpciPodaci>{
         return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajopcepodatke`), { headers : this.getHeaders() }).pipe(
             map((response => response as IOpciPodaci),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajPoruke():Observable<IPorukaAdmin[]>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Poruka`), { headers : this.getHeaders() }).pipe(
+            map((response => response as IPorukaAdmin[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajPorukeZaNekretninu(nekretninaId:number):Observable<IPorukaAdmin[]>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Poruka/dajzanekretninu/${nekretninaId}`), { headers : this.getHeaders() }).pipe(
+            map((response => response as IPorukaAdmin[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    postaviPorukuProcitana(poruka: IPorukaAdmin) : Observable<any>{
+        return this.http.patch(this.gs.getApiUrl(`/admin/Poruka/postaviProcitana`), poruka,{ headers : this.getHeaders() }).pipe(
+            map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    postaviPorukuOdgovorena(poruka: IPorukaAdmin) : Observable<any>{
+        return this.http.patch(this.gs.getApiUrl(`/admin/Poruka/postaviOdgovorena`), poruka,{ headers : this.getHeaders() }).pipe(
+            map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    obrisiPoruku(porukaId: number) : Observable<any>{
+        return this.http.delete(this.gs.getApiUrl(`/admin/Poruka/${porukaId}`),{ headers : this.getHeaders() }).pipe(
+            map((response => response as any),
             catchError((error => throwError(error)  ))
             )
     )}

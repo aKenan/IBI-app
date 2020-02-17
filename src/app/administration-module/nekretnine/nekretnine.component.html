@@ -43,16 +43,16 @@
                 <dxi-column dataField="lokacija.nazivFull" dataType="string" caption="Lokacija"></dxi-column>
                 <dxi-column dataField="datumKreiranja" dataType="date" cellTemplate="dateCell" caption="Datum kreiranja"></dxi-column>
                 <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" cellTemplate="checkTemplate" [width]="75"></dxi-column>   
-                <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate"[width]="150"></dxi-column>     
+                <dxi-column caption="#"  cellTemplate="buttonTemplate"[width]="150"></dxi-column>     
                 
                 <div *dxTemplate="let cellData of 'dateCell'">
                   {{cellData.value | date: 'dd.MM.yyyy. u HH:mm'}}
                 </div>
 
-                <div *dxTemplate="let cellData of 'buttonTemplate'">
-                  <a type="button" class="btn btn-sm btn-success" (click)="aktivirajNekretninu(cellData.value)" title="Aktiviraj nekretninu"><i class="fa fa-check"></i></a>
-                  <a type="button" class="btn btn-sm btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.value]" title="Azuriraj nekretninu"><i class="fa fa-pen"></i></a>   
-                  <a type="button" class="btn btn-sm btn-danger" (click)="deaktivirajNekretninu(cellData.value)" title="Deaktiviraj nekretninu"><i class="fa fa-times"></i></a>               
+                <div *dxTemplate="let cellData of 'buttonTemplate'">                  
+                  <a type="button" class="btn btn-sm btn-success" *ngIf="!cellData.data.aktivan" (click)="aktivirajNekretninu(cellData.data.id)" title="Aktiviraj nekretninu"><i class="fa fa-check"></i></a>   
+                  <a type="button" class="btn btn-sm btn-danger"  *ngIf="cellData.data.aktivan" (click)="deaktivirajNekretninu(cellData.data.id)" title="Deaktiviraj nekretninu"><i class="fa fa-times"></i></a>               
+                  <a type="button" class="btn btn-sm btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.data.id]" title="Azuriraj nekretninu"><i class="fa fa-pen"></i></a>
                 </div>
 
                 <div *dxTemplate="let cellData of 'checkTemplate'">

@@ -32,6 +32,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PorukeComponent } from './poruke/poruke.component';
+import { PorukaDetaljiComponent } from './poruke/poruka-detalji/poruka-detalji.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -42,7 +44,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [LoginComponent, MainComponent, 
     AdminLayoutComponent, NavbarComponent, 
     NekretnineComponent, NekretninaComponent, LokacijaComponent, SidebarComponent,
-    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, SlikeComponent, SlikeUploadComponent, DragDropDirective],
+    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, SlikeComponent, SlikeUploadComponent, DragDropDirective, PorukeComponent, PorukaDetaljiComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,

@@ -1,0 +1,33 @@
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0pr53_5zM1Fsmdvr3UGIb38tzip8AdsM&callback=initMap"
+type="text/javascript"></script>
+
+<google-map></google-map> -->
+
+
+
+<div class="container">
+  <agm-map 
+      [latitude]="latitude" 
+      [longitude]="longitude" 
+      [zoom]="16" >
+        <agm-marker 
+        [latitude]="latitude" 
+        [longitude]="longitude" [iconUrl]="location"></agm-marker>
+      </agm-map>
+  <div class="row  kontakt-main">
+    <div class=" col-md-5 col-sm-5 col-xs-12">
+      <span><i class="fa fa-map-marker"></i> Magribija 12, Sarajevo, Bosna i Hercegovina</span><br>
+      <span><i class="fa fa-phone"></i> +387 61 350-666</span><br>
+      <span><i class="fa fa-envelope"></i> belma.karkin@gmail.com</span>
+    </div>
+    <div class=" col-md-7 col-sm-7 col-xs-12">
+      <div class="card">
+        <div class="card-header">Kontaktirajte nas</div>
+        <div class="card-body">
+          <poruka-public></poruka-public>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

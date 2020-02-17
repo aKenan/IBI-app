@@ -4,14 +4,22 @@ import { CommonModule } from '@angular/common';
 import { PublicRoutingModule } from './public-routing.module';
 import { MainPublicComponent } from './main-public/main-public.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { KontaktComponent } from './kontakt/kontakt.component';
+
+import { AgmCoreModule } from '@agm/core';
+import { PorukaComponent } from './kontakt/poruka/poruka.component';
 
 @NgModule({
-  declarations: [MainPublicComponent],
+  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCCW9P_gbCxPZGkoM1WS4VN9-UTxsrWABs',
+      libraries: ['places']
+    })
   ]
 })
 export class PublicModule { }

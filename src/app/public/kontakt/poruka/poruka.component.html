@@ -1,0 +1,53 @@
+<form [formGroup]="porukaForm" (ngSubmit)="posaljiPoruku()">
+  <div class="panel-body">
+    <div class="row">   
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="email">E-mail*</label>
+        <input type="email" class="form-control" name="email"  placeholder="Unesite vaš e-mail"  
+            formControlName="email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+        <div *ngIf="f.email.errors && f.email.touched" class="invalid-feedback">              
+          <span *ngIf="f.email.errors.required">Unesite email</span>
+          <span *ngIf="f.email.errors.email">Unesite validnu e-mail adresu</span>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="telefon">Telefon</label>
+        <input type="text" class="form-control" name="telefon" placeholder="Unesite vaš telefon" autocomplete="off" 
+        formControlName="telefon" [ngClass]="{ 'is-invalid': f.telefon.touched && f.telefon.errors }">
+        <div *ngIf="f.telefon.errors && f.telefon.touched" class="invalid-feedback">              
+          <span *ngIf="f.telefon.errors.minlength">Broj telefona zahtjeva minimalno 9 karaktera</span>
+        </div>          
+      </div>
+
+      <div class="form-group col-sm-12 col-xs-12">
+        <label for="naziv">Naziv*</label>
+        <input type="text" class="form-control" placeholder="Unesite vaš naziv"  
+            formControlName="naziv" [ngClass]="{ 'is-invalid': f.naziv.touched && f.naziv.errors }">
+        <div *ngIf="f.naziv.errors && f.naziv.touched" class="invalid-feedback">              
+          <span *ngIf="f.naziv.errors.required">Unesite vaš naziv</span>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-12 col-xs-12">
+        <label for="sadrzaj">Poruka*</label>
+        <textarea class="form-control" placeholder="Vaša poruka" formControlName="sadrzaj"
+          [ngClass]="{ 'is-invalid': f.sadrzaj.touched && f.sadrzaj.errors }" rows="5"></textarea>
+          <div *ngIf="f.sadrzaj.errors && f.sadrzaj.touched" class="invalid-feedback">              
+          <span *ngIf="f.sadrzaj.errors.required">Unesite sadržaj poruke</span>
+          <span *ngIf="f.sadrzaj.errors.minlength">Vaša poruka treba da sadrži minimalno 15 karaktera</span>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-12 col-xs-12" *ngIf="porukaPoslana">
+        <div class="alert alert-success" role="alert">
+          Uspješno ste poslali poruku
+        </div>
+      </div>
+
+      <div class="form-group col-sm-12 col-xs-12">        
+          <button type="submit" class="btn btn-primary" style="width:100%">Pošalji poruku</button>        
+      </div>      
+    </div>
+  </div>
+</form>

@@ -31,7 +31,8 @@ export class NekretnineComponent implements OnInit {
     )
   }
 
-  aktivirajNekretninu(id:number){
+  aktivirajNekretninu(id:any){
+    console.log(id);
     let mod = this.nekretnine.filter(p=>p.id == id)[0];
 
     Swal.fire({
@@ -53,8 +54,32 @@ export class NekretnineComponent implements OnInit {
           )
         }
     })
-   
-  
   }
+
+  deaktivirajNekretninu(id:any){
+    console.log(id);
+    let mod = this.nekretnine.filter(p=>p.id == id)[0];
+
+    Swal.fire({
+      title: 'Da li ste sigurni? Nekretnina više neće biti vidljiva posjetiocima stranice',
+      text: "",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Da!',
+      cancelButtonText: "Odustani"
+    }).then((result) => {
+      if (result.value) {
+        this.adminService.dektivirajNekretninu(mod).subscribe(
+            data => {
+              this.dajNekretnine();
+              this.generalService.showSuccess("Uspješno ste deaktivirali nekretninu", 2000);
+            }
+          )
+        }
+    })
+  }
+  
 
 }

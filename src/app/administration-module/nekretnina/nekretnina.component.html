@@ -1,19 +1,17 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card card-body">
-      <div class="panel-heading">
+    <div class="card">
+      <div class="card-header">
         <h5 class="card-title" style="display: inline-block;">{{titleText}}</h5>
-        <!-- <a class="btn btn-success pull-right" [routerLink]="['/IBIAdminPanel/nekretnine']"><span class="fa fa-arrow-left"></span> Nazad</a> -->
       </div>
+        <!-- <a class="btn btn-success pull-right" [routerLink]="['/IBIAdminPanel/nekretnine']"><span class="fa fa-arrow-left"></span> Nazad</a> -->
+        <div class="card-body">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': aktivniTab == 1}" (click)="aktivirajTab(1)">Osnovni podaci</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 2}" (click)="aktivirajTab(2)">Detalji</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 3}" (click)="aktivirajTab(3)">Kontakt podaci</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'disabled': id == 0, 'active': aktivniTab == 4}" (click)="aktivirajTab(4)">Slike</a>
@@ -142,9 +140,9 @@
                 </div>
               </div>
             </div>
-            <div class="panel-footer text-right">
-              <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Potvrdi</button>
-              <a [routerLink]="['/IBIAdminPanel/nekretnine']" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Odustani</a>
+            <div class="text-right form-footer">
+              <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Potvrdi</button>
+              <a [routerLink]="['/IBIAdminPanel/nekretnine']" class="btn btn-danger"><i class="fa fa-times"></i> Odustani</a>
           </div>
         </form>
 
@@ -152,20 +150,8 @@
 
         <slike *ngIf="aktivniTab==4 && id>0" [id]="id"></slike>
 
-        <!-- <div *>
-          <input
-                style="display: none"
-                type="file" (change)="onFileChanged($event)"
-                #fileInput>
-              <button (click)="fileInput.click()">Select File</button>
-              <button (click)="onUpload()">Upload!</button>
-
-
-              <img [src]="imageToShow"
-                alt="Place image title">
-        </div> -->
-        
       </div>
+    </div>
     </div>
   </div>
 </div>

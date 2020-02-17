@@ -89,5 +89,7 @@ export interface IOpciPodaci
     novePoruke: number;
     aktivne: number;
     naPonudi: number;
-    prodane: number;        
+    prodane: number;    
+    brojIsteklih:number;
+    brojIzdvojenih:number;    
 }

@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angular/http";
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
-import { DllModel } from "../models/public";
+import { DllModel, IPoruka } from "../models/public";
 
 @Injectable({
     providedIn: 'root'
@@ -26,6 +26,13 @@ import { DllModel } from "../models/public";
     pretraga(pojam:string, tipProdaje:number, tipNekretnine:number) : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/pretraga/${pojam}/${tipProdaje}/${tipNekretnine}`)).pipe(
             map((response => response as any[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    posaljiPoruku(poruka : IPoruka): Observable<any>{
+        return this.http.post(this.gs.getApiUrl(`/posaljiporuku`), poruka).pipe(
+            map((response => response as IPoruka[]),
             catchError((error => throwError(error)  ))
             )
     )}
