@@ -15,6 +15,11 @@
         <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
       </select>
     </div>
-    
+  </div>
+</div>
+
+<div class="container row">
+  <div class="col-md-4 col-sm-4" *ngFor="let nekretnina of rezultatPretrage">
+    <nekretnina-basic [nekretnina]="nekretnina"></nekretnina-basic>
   </div>
 </div>

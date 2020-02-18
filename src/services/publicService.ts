@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angular/http";
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
-import { DllModel, IPoruka } from "../models/public";
+import { DllModel, IPoruka, INekretninaBasic } from "../models/public";
 
 @Injectable({
     providedIn: 'root'
@@ -23,9 +23,9 @@ import { DllModel, IPoruka } from "../models/public";
             )
     )}
 
-    pretraga(pojam:string, tipProdaje:number, tipNekretnine:number) : Observable<any>{
+    pretraga(pojam:string, tipProdaje:number, tipNekretnine:number) : Observable<INekretninaBasic[]>{
         return this.http.get(this.gs.getApiUrl(`/pretraga/${pojam}/${tipProdaje}/${tipNekretnine}`)).pipe(
-            map((response => response as any[]),
+            map((response => response as INekretninaBasic[]),
             catchError((error => throwError(error)  ))
             )
     )}
@@ -36,4 +36,40 @@ import { DllModel, IPoruka } from "../models/public";
             catchError((error => throwError(error)  ))
             )
     )}
+
+    dajSliku(lokacija:string) : Observable<any>{
+        return this.http.get(this.gs.getApiUrl(`/dajsliku/${lokacija}`), { responseType: 'blob' });
+    }
+
+    dajSadrzajSlikeIzBlob(image: Blob) : Observable<any> {
+        return Observable.create((observer : any) =>{
+            let reader = new FileReader();
+            reader.addEventListener("load", () => {
+                observer.next(reader.result);    
+            }, false);
+
+            if (image) {
+                reader.readAsDataURL(image);
+            } 
+            
+        })
+        
+      }
+    
+    postaviSadrzajSlike(lokacija: string) : Observable<any>{
+        return Observable.create((observer:any) =>{
+            this.dajSliku(lokacija).subscribe(
+                data => {
+                    var sadrzaj = this.dajSadrzajSlikeIzBlob(data).subscribe(
+                        data =>{
+                            observer.next(data); 
+                        }
+                    );
+                             
+                })
+        })
+                
+    }
+
+      
   }

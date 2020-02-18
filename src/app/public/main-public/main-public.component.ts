@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from '../../../services/publicService';
-import { DllModel } from '../../../models/public';
+import { DllModel, INekretninaBasic } from '../../../models/public';
 
 @Component({
   selector: 'app-main-public',
@@ -12,6 +12,7 @@ export class MainPublicComponent implements OnInit {
   tipProdaje : number = 0;
   tipNekretnine : number = 0;
   tipoviNekretnine: DllModel[] = [];
+  rezultatPretrage:INekretninaBasic[] = [];
   constructor(private publicService:PublicService ) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class MainPublicComponent implements OnInit {
   pretraga(){
     this.publicService.pretraga(this.pojam, this.tipProdaje, this.tipNekretnine).subscribe(
       data =>{
-        console.log(data);
+        this.rezultatPretrage = data;
       }
     )
   }
