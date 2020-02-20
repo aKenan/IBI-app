@@ -1,5 +1,71 @@
-img {
+   img {
     width: 100%;
     max-height: 200px;
-    object-fit: cover;
-  }
+    object-fit: cover;	
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.listing-badges:hover img, .nekretnina-image:hover img{
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.nekretnina-image{
+    overflow: hidden;
+}
+
+a{
+    color:#4c4c4c
+}
+
+a:hover{
+    color:#000000;
+    text-decoration: none;
+}
+
+h6 {
+    color:#797878;
+    cursor:pointer;
+}
+
+h6:hover{
+    color:#686464
+}
+
+.listing-badges {
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    right: 0;
+    width: 100%;
+    display: block;
+    font-size: 13px;
+    padding: 0px;
+    overflow: hidden;
+    height: 100px;
+}
+
+.listing-badges span {
+    color: #fff;
+    display: inline-block;
+    padding: 1px 10px;
+    float: right;
+    background-color: rgb(64, 59, 59);
+    border-radius: 3px;
+    top: 15px;
+    right: 15px;
+    position: absolute;
+}
+
+.listing-badges span.najam{
+    top:40px;
+    background-color: rgb(71, 71, 71);
+}
+
+.nekretnina-basic:hover{
+    box-shadow: 1px 1px 3px 1px rgba(133,130,133,1);
+    transition:cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    overflow: hidden
+}

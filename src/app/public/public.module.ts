@@ -9,9 +9,10 @@ import { KontaktComponent } from './kontakt/kontakt.component';
 import { AgmCoreModule } from '@agm/core';
 import { PorukaComponent } from './kontakt/poruka/poruka.component';
 import { NekretninaBasicComponent } from './nekretnina-basic/nekretnina-basic.component';
+import { PretragaComponent } from './pretraga-form/pretraga.component';
 
 @NgModule({
-  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent],
+  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

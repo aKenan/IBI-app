@@ -1,25 +1,25 @@
-<div class="container div-center">
-  <div class="row pretraga">
-    <div class="odabir">
-      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 0" [ngClass]="{'btn-outline-primary' : tipProdaje != 0, 'btn-primary' : tipProdaje == 0}">Sve</button>
-      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 1" [ngClass]="{'btn-outline-primary' : tipProdaje != 1, 'btn-primary' : tipProdaje == 1}">Prodaja</button>
-      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 2" [ngClass]="{'btn-outline-primary' : tipProdaje != 2, 'btn-primary' : tipProdaje == 2}">Najam</button>      
-    </div>    
-    <div class="row pretraga-forma  active-cyan-3 active-cyan-4">      
-      <input type="text" [(ngModel)]="pojam" class="form-control" placeholder="pojam za pretragu npr: stan vogošća" aria-label="Search">
-      <button type="submit" class="btn btn-primary" (click)="pretraga()"><i class="fa fa-search" ></i></button>
-    </div>
-    <div class="row odabir">      
-      <select class="form-control" [(ngModel)]="tipNekretnine">
-        <option [value]="'0'" selected>Svi tipovi nekretnina</option>
-        <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
-      </select>
-    </div>
+<div class="main-search">
+  <div class="container search">
+    <pretraga-form></pretraga-form>
   </div>
 </div>
 
-<div class="container row">
-  <div class="col-md-4 col-sm-4" *ngFor="let nekretnina of rezultatPretrage">
-    <nekretnina-basic [nekretnina]="nekretnina"></nekretnina-basic>
+https://swiperjs.com/demos/#free_mode_no_fixed_positions
+https://stackblitz.com/edit/angular-with-swiper?file=app%2Fapp.component.html
+
+<div class="container" style="margin-top:2%;">
+  <div class="col-sm-12" style="margin-top: 1%;  margin-bottom: 1%;  border-bottom: 1px solid lightgray;">
+    <h4>Najnovije nekretnine</h4>
   </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-xl-4" style="margin-top:1%;margin-bottom:1%" *ngFor="let nekretnina of rezultatPretrage">
+      <nekretnina-basic class="nekretnina-basic" [nekretnina]="nekretnina"></nekretnina-basic>
+    </div>  
+    <div class="row div-center" style="width:100%; margin-top:5px">
+      <button class="btn btn-info" [disabled]="!imaJos" (click)="dajJos()" style="width:25%">Učitaj još...</button>  
+    </div>
+  </div>
+  
 </div>
+
+

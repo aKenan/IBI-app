@@ -1,0 +1,66 @@
+.odabir button{
+    margin: 4px 10px 4px 10px;
+}
+
+.odabir{
+    display: flex; justify-content: center; width: 105%; margin-top:5px; margin-bottom: 5px;
+}
+
+.odabir select{
+    margin-left:1px;
+    width:97%
+}
+
+.pretraga-forma{
+    display: flex; justify-content: center; width: 105%;
+}
+
+.pretraga{
+    background-color: #f8f9fa;
+    margin-top:2%;
+    width:100%;
+    display: BLOCK; 
+    POSITION: relative;
+}
+
+.pretraga-forma input{
+    width:80%;
+    margin-left:1px;    
+}
+.pretraga-forma button{
+    width:16%;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 860px) {
+    .pretraga{
+        width:100%;
+    }
+  }
+
+.more-search-options {
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    margin-top: 17px;
+    transition: all 0.35s;
+    z-index: 19;
+    transform: translate3d(0,-20px,0);
+}
+
+.more-search-options.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0,-10px,0);
+}
+
+.more-search-options-container {
+    background-color:  #f8f9fa;
+    position: relative;
+    padding: 30px 30px 25px 30px;
+    padding-top: 0;
+    border-radius: 0 0 3px 3px;
+}

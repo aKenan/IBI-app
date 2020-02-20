@@ -1,0 +1,33 @@
+<div class="div-center">
+  <div class="row pretraga">
+    <div class="odabir">
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 0" [ngClass]="{'btn-outline-primary' : tipProdaje != 0, 'btn-primary' : tipProdaje == 0}">Sve</button>
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 1" [ngClass]="{'btn-outline-primary' : tipProdaje != 1, 'btn-primary' : tipProdaje == 1}">Prodaja</button>
+      <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 2" [ngClass]="{'btn-outline-primary' : tipProdaje != 2, 'btn-primary' : tipProdaje == 2}">Najam</button>      
+    </div>    
+    <div class="input-group mb-3 input-group-lg">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+      </div>
+      <input type="text" [(ngModel)]="pojam" class="form-control" aria-label="Pretraga" placeholder="pojam za pretragu" (keyup.enter)="pretraga()">
+      <button type="submit" class="btn btn-primary" (click)="pretraga()" style="width: 10%;"><i class="fa fa-search" ></i></button>
+    </div>
+    
+    <a (click)="viseOpcija = !viseOpcija" style="cursor: pointer;">
+      <i class="fa" [ngClass]="{'fa-plus-circle ' : viseOpcija == false, 'fa-minus-circle' : viseOpcija==true}"></i> <span>{{viseOpcija ? ' Manje opcija' : ' Više opcija'}}</span>
+    </a>
+
+    <div class="more-search-options" [ngClass]="{'active' : viseOpcija == true}">      
+        <div class="more-search-options-container">
+          <div class="input-group mb-3">      
+            <select class="form-control" [(ngModel)]="tipNekretnine">
+              <option [value]="'0'" selected>Svi tipovi nekretnina</option>
+              <option *ngFor="let elem of tipoviNekretnine" [value]="elem.vrijednost">{{elem.naziv}}</option>                                                                
+            </select>
+          </div>
+        </div>
+    </div>
+
+  </div>
+  
+</div>

@@ -8,31 +8,32 @@ import { DllModel, INekretninaBasic } from '../../../models/public';
   styleUrls: ['./main-public.component.css']
 })
 export class MainPublicComponent implements OnInit {
-  pojam:string = '';
-  tipProdaje : number = 0;
-  tipNekretnine : number = 0;
-  tipoviNekretnine: DllModel[] = [];
+  stranica:number = 1;
+  imaJos:boolean = true;
+  
   rezultatPretrage:INekretninaBasic[] = [];
   constructor(private publicService:PublicService ) { }
 
   ngOnInit() {
-    this.dajTipoveNekretnine()
+    this.dajSve();
   }
 
-  dajTipoveNekretnine(){
-    this.publicService.dajTipoveNekretnine().subscribe(
+ 
+
+  dajSve(){
+    this.publicService.dajsveNekretnine(this.stranica).subscribe(
       data =>{
-        this.tipoviNekretnine = data;
+        this.imaJos = (data as INekretninaBasic[]).length >= 2;
+        this.rezultatPretrage = this.rezultatPretrage.concat(data as INekretninaBasic[]);
       }
     )
   }
 
-  pretraga(){
-    this.publicService.pretraga(this.pojam, this.tipProdaje, this.tipNekretnine).subscribe(
-      data =>{
-        this.rezultatPretrage = data;
-      }
-    )
+  dajJos(){
+    this.stranica++;
+    this.dajSve();
   }
+
+  
   
 }

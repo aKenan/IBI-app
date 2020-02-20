@@ -1,4 +1,18 @@
-<div>
-  <img [src]="slikaContent">
-  {{nekretnina.naziv}}, {{nekretnina.opis}}, {{nekretnina.lokacija}}
+<div class="card nekretnina-basic">
+  <div class="nekretnina-image">
+    <img class="card-img-top" *ngIf="slikaContent != null" [src]="slikaContent" alt="Slika">
+    <img class="card-img-top" *ngIf="slikaContent == null" src="./assets/images/nema.png" alt="Slika">
+  </div>  
+  <div class="listing-badges">
+    <!-- <span class="featured">Featured</span> -->
+    <span *ngIf="nekretnina.prodaja">Prodaja</span>
+    <span *ngIf="nekretnina.najam" class="najam">Najam</span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><a [routerLink]="['nekretnina', nekretnina.id]">{{nekretnina.naziv}}</a></h5>
+    <h6><i class="fa fa-map-marker"></i> {{nekretnina.lokacija}}</h6>
+  </div>
+  <div class="card-footer">
+    <h6><i class="fa fa-expand"></i> {{nekretnina.brojKvadrati}} m²</h6>
+  </div>
 </div>
