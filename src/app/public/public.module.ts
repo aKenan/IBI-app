@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { PorukaComponent } from './kontakt/poruka/poruka.component';
 import { NekretninaBasicComponent } from './nekretnina-basic/nekretnina-basic.component';
 import { PretragaComponent } from './pretraga-form/pretraga.component';
+import { SwiperModule, SwiperConfigInterface,
+  SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
 @NgModule({
   declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent],
@@ -18,6 +20,7 @@ import { PretragaComponent } from './pretraga-form/pretraga.component';
     PublicRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    SwiperModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCW9P_gbCxPZGkoM1WS4VN9-UTxsrWABs',
       libraries: ['places']
