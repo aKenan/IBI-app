@@ -12,9 +12,10 @@ import { NekretninaBasicComponent } from './nekretnina-basic/nekretnina-basic.co
 import { PretragaComponent } from './pretraga-form/pretraga.component';
 import { SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { NekretninaFormComponent } from './nekretnina-form/nekretnina-form.component';
 
 @NgModule({
-  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent],
+  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent, NekretninaFormComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

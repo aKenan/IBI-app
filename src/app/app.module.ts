@@ -9,6 +9,8 @@ import { EmptyLayoutComponent } from './_layouts/empty-layout/empty-layout.compo
 import { HttpConfigInterceptor } from './administration-module/httpconfig.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../services/generalService';
 
 
 @NgModule({
@@ -23,9 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers:[    
+  providers:[   
+    {
+      provide: UrlSerializer,
+      useClass: LowerCaseUrlSerializer
+    }, 
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

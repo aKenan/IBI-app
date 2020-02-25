@@ -5,6 +5,7 @@ import { NgProgressComponent } from '@ngx-progressbar/core';
 import { Title }     from '@angular/platform-browser';
 import { Observable, observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DefaultUrlSerializer, UrlTree } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -69,4 +70,10 @@ export class GeneralService{
       })
       
     }
+}
+
+export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
+  parse(url: string): UrlTree {
+      return super.parse(url.toLowerCase());
+  }
 }

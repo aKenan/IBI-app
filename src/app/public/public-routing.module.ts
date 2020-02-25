@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPublicComponent } from './main-public/main-public.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { NekretninaFormComponent } from './nekretnina-form/nekretnina-form.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,9 @@ const routes: Routes = [
   },
   {
     path:'Kontakt', component: KontaktComponent
+  },
+  {
+    path:'nekretnina/:id', component: NekretninaFormComponent
   }
 ];
 

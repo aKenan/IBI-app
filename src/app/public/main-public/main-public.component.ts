@@ -13,6 +13,7 @@ import { convertToR3QueryMetadata } from '@angular/core/src/render3/jit/directiv
 export class MainPublicComponent implements OnInit, AfterViewInit {
   stranica:number = 1;
   imaJos:boolean = true;
+  ready:boolean = true;
 
   rezultatPretrage:INekretninaBasic[] = [];
 
@@ -37,8 +38,10 @@ export class MainPublicComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    const swiper = document.querySelector('.swiper-container');
+    
+    const swiper = document.querySelectorAll('.swiper-container');
     swiper['swiper'].loopCreate();
+    
   }
 
   dajSve(){
@@ -46,6 +49,7 @@ export class MainPublicComponent implements OnInit, AfterViewInit {
       data =>{
         this.imaJos = (data as INekretninaBasic[]).length >= 2;
         this.rezultatPretrage = this.rezultatPretrage.concat(data as INekretninaBasic[]);
+        this.ready=true;
       }
     )
   }

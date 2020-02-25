@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angular/http";
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
-import { DllModel, IPoruka, INekretninaBasic } from "../models/public";
+import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/public";
 
 @Injectable({
     providedIn: 'root'
@@ -77,6 +77,13 @@ import { DllModel, IPoruka, INekretninaBasic } from "../models/public";
         })
                 
     }
+
+    dajNekretninu(id:number) : Observable<INekretnina>{
+        return this.http.get(this.gs.getApiUrl(`/nekretnina/${id}`)).pipe(
+            map((response => response as INekretnina),
+            catchError((error => throwError(error)  ))
+            )
+    )}
 
       
   }

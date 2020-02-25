@@ -9,7 +9,7 @@
     <span *ngIf="nekretnina.najam" class="najam">Najam</span>
   </div>
   <div class="card-body">
-    <h5 class="card-title"><a [routerLink]="['nekretnina', nekretnina.id]">{{nekretnina.naziv}}</a></h5>
+    <h5 class="card-title"><a [routerLink]="['/nekretnina', nekretnina.id]">{{nekretnina.naziv}}</a></h5>
     <h6><i class="fa fa-map-marker"></i> {{nekretnina.lokacija}}</h6>
   </div>
   <div class="card-footer">

@@ -23,3 +23,27 @@ export interface INekretninaBasic
     lokacija: string;
     slika: string;
 }
+
+export interface IOpisNekretnine
+{
+    opis?: string;
+    vrijednost?: string;
+    tipVrijednosti?: string;
+    mjernaJedinica?: string;
+}
+
+export interface INekretnina
+{
+    id?: number;
+    naziv?: string;
+    opis?: string;
+    opisDetaljno?: string;
+    prodaja?: boolean;
+    najam?: boolean;
+    lokacija?: string;
+    tip?: string;
+    oznaka?: string;
+    opisi?: IOpisNekretnine[];
+    slika?: string;
+    slike?: string[];
+}
