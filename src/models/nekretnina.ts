@@ -84,6 +84,17 @@ export interface ISlika
     content: any;
 }
 
+export interface IIzdvojenaNekretninaViewModel
+{
+    nekretninaId: number;
+    datumKreiranja?: Date;
+    vaziOd?: Date;
+    vaziDo?: Date;
+    aktivan?: boolean;
+
+    nekretnina?: INekretnina;
+}
+
 export interface IOpciPodaci
 {
     novePoruke: number;

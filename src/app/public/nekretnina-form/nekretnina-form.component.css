@@ -1,0 +1,53 @@
+.badge{
+    margin: 0;
+    padding: 4px 11px;
+    line-height: 24px;
+    border-radius: 3px;
+    background-color: #66676b;
+    color: #fff;
+    font-size: 13px;
+    position: relative;
+    top: -4px;
+    margin-left: 4px;
+}
+
+h2{
+    display:inline
+}
+
+h2, h3, span{
+    font-family: "Varela Round", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.location{
+    font-size: 17px;
+    color: #888;
+    margin-top: 5px;
+    display: block;
+}
+
+.osnovno-wrapper{
+    margin-top: 20px;
+    margin-bottom: 4px;    
+}
+
+.posalji-poruku{
+    justify-content: right;
+    text-align: end;
+}
+
+.slike{
+    margin-top:50px;
+}
+
+.opis{
+    margin-top: 25px;
+}
+
+.opis h3, .detalji h3{
+    font-size: 22px;
+    margin: 50px 0 25px 0;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #cecdcd;
+    width: 100%;
+}

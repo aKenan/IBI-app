@@ -13,6 +13,7 @@ import { PretragaComponent } from './pretraga-form/pretraga.component';
 import { SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { NekretninaFormComponent } from './nekretnina-form/nekretnina-form.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent, NekretninaFormComponent],
@@ -22,6 +23,7 @@ import { NekretninaFormComponent } from './nekretnina-form/nekretnina-form.compo
     ReactiveFormsModule,
     FormsModule,
     SwiperModule,
+    NgxGalleryModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCW9P_gbCxPZGkoM1WS4VN9-UTxsrWABs',
       libraries: ['places']

@@ -26,10 +26,7 @@ import { LowerCaseUrlSerializer } from '../services/generalService';
     HttpClientModule
   ],
   providers:[   
-    {
-      provide: UrlSerializer,
-      useClass: LowerCaseUrlSerializer
-    }, 
+     
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,5 +1,26 @@
-<p>
-  ovo obo
-</p>
+<div class="row osnovno-wrapper" >
+    <div class="col-md-8 col-xs-12 col-sm-6 osnovni-detalji">
+        <h2>{{nekretnina.naziv}}</h2>
+        <span class="badge" *ngIf="nekretnina.prodaja">Prodaja</span>
+        <span class="badge" *ngIf="nekretnina.najam">Najam</span>
+        <span class="location"><i class="fa fa-map-marker"></i> {{nekretnina.lokacija}}</span>
+    </div>
+    <div class="col-md-4 col-xs-12 col-sm-6 posalji-poruku">
+        <button type="button" class="btn btn-sm btn-info"><i class="fa fa-envelope"></i> Pošalji poruku</button>
+    </div>
+</div>
 
-{{nekretnina.naziv}}
+<div class="row slike">
+    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+</div>
+
+<div class="row opis">
+    <h3>Opis</h3>
+    <span>{{nekretnina.opisDetaljno}}</span>
+</div>
+
+<div class="row detalji">
+    <h3>Detalji</h3>
+    <span>{{nekretnina.opisDetaljno}}</span>
+</div>
+

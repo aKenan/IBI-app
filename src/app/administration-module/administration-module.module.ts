@@ -34,6 +34,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PorukeComponent } from './poruke/poruke.component';
 import { PorukaDetaljiComponent } from './poruke/poruka-detalji/poruka-detalji.component';
+import { IzdvojeneNekretnineComponent } from './izdvojene-nekretnine/izdvojene-nekretnine.component';
+import { IzdvojenaNekretninaFormComponent } from './izdvojene-nekretnine/izdvojena-nekretnina-form/izdvojena-nekretnina-form.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -44,7 +46,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [LoginComponent, MainComponent, 
     AdminLayoutComponent, NavbarComponent, 
     NekretnineComponent, NekretninaComponent, LokacijaComponent, SidebarComponent,
-    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, SlikeComponent, SlikeUploadComponent, DragDropDirective, PorukeComponent, PorukaDetaljiComponent],
+    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, SlikeComponent, SlikeUploadComponent, DragDropDirective, PorukeComponent, PorukaDetaljiComponent, IzdvojeneNekretnineComponent, IzdvojenaNekretninaFormComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,

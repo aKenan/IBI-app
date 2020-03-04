@@ -6,7 +6,7 @@ import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angul
 import { map, take, catchError } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
 import { ILoginModel, ILoginReturnModel } from "../models/login";
-import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika, IOpciPodaci} from "../models/nekretnina";
+import { ILokacija, IKontakt, INekretnina, IOpisNekretnine, INekretninaOpisNekretnine, IUcitanaSlika, ISlika, IOpciPodaci, IIzdvojenaNekretninaViewModel} from "../models/nekretnina";
 import { ISifarnik } from "../models/sifarnik";
 import { TipSifarnikaEnum } from "../models/enums/enums";
 import { IPorukaAdmin } from "../models/admin";
@@ -250,6 +250,34 @@ export class AdminService{
     obrisiPoruku(porukaId: number) : Observable<any>{
         return this.http.delete(this.gs.getApiUrl(`/admin/Poruka/${porukaId}`),{ headers : this.getHeaders() }).pipe(
             map((response => response as any),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dodajIzdvojenuNekretninu(model: IIzdvojenaNekretninaViewModel): Observable<any>{
+        return this.http.post(this.gs.getApiUrl('/admin/Nekretnina/dodajIzdvojenuNekretninu'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as IIzdvojenaNekretninaViewModel),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    azurirajIzdvojenuNekretninu(model: IIzdvojenaNekretninaViewModel): Observable<any>{
+        return this.http.put(this.gs.getApiUrl('/admin/Nekretnina/azurirajIzdvojenuNekretninu'), model, { headers : this.getHeaders() }).pipe(
+            map((response => response as IIzdvojenaNekretninaViewModel),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajIzdvojeneNekretnine():Observable<IIzdvojenaNekretninaViewModel[]>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Poruka/dajzanekretninu`), { headers : this.getHeaders() }).pipe(
+            map((response => response as IIzdvojenaNekretninaViewModel[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    dajIzdvojenuNekretninu(nekretninaId: number):Observable<IIzdvojenaNekretninaViewModel>{
+        return this.http.get(this.gs.getApiUrl(`/admin/Poruka/dajIzdvojenuNekretninu/${nekretninaId}`), { headers : this.getHeaders() }).pipe(
+            map((response => response as IIzdvojenaNekretninaViewModel),
             catchError((error => throwError(error)  ))
             )
     )}
