@@ -1,1 +1,46 @@
+<form [formGroup]="opisNekretnineForm" (ngSubmit)="dodajAzurirajIzdvojenuNekretninu()" *ngIf="showForm">      
+  <div class="modal-body">   
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label" for="dateOfBirth">Naziv nekretnine</label>
+          <div class="input-group">
+            <h3>{{nova == true ? nekretnina.naziv : izdvojenaNekretnina.nekretnina.naziv}}</h3>
+          </div>
+        </div>
 
+          <div class="form-group">
+            <label class="control-label" for="dateOfBirth">Datum od</label>
+            <div class="input-group">
+                <dx-date-box
+                    displayFormat="dd.MM.yyyy."
+                    name="vaziOd" formControlName="vaziOd" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
+                </dx-date-box>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="dateOfBirth">Datum do</label>
+            <div class="input-group">
+                <dx-date-box
+                    displayFormat="dd.MM.yyyy."
+                    name="vaziOd" formControlName="vaziDo" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
+                </dx-date-box>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <dx-check-box formControlName="aktivan"
+                            [width]="120"
+                            text="Aktivan"
+                        ></dx-check-box>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="odustani()">Odustani</button>
+    <button type="submit" class="btn btn-success">Potvrdi</button>
+  </div>
+</form>
