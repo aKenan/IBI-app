@@ -3,6 +3,7 @@ import { AdminService } from '../../../services/adminService';
 import { INekretnina } from '../../../models/nekretnina';
 import { GeneralService } from '../../../services/generalService';
 import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,9 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nekretnine.component.css']
 })
 export class NekretnineComponent implements OnInit {
-
+  odabranaNekretninaId : number;
   nekretnine: INekretnina[];
-  constructor(private adminService: AdminService, private generalService : GeneralService) { }
+  constructor(private adminService: AdminService, private generalService : GeneralService, private modalService : NgbModal) { }
 
   ngOnInit() { 
     this.dajNekretnine();
@@ -79,6 +80,20 @@ export class NekretnineComponent implements OnInit {
           )
         }
     })
+  }
+
+  dodajUIzdvojene(content:any, id:any){
+    this.odabranaNekretninaId = id;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      
+    }, (reason) => {
+      
+    });
+  }
+
+  dismissModal(model:any){
+    this.dajNekretnine();
+    this.modalService.dismissAll();
   }
   
 

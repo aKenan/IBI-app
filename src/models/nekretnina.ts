@@ -49,7 +49,9 @@ export interface INekretnina
     lokacijaId?: number;
     aktivan?: boolean;
     tipNekretnineText?:string;
-
+    lat?: number;
+    lon?: number;
+    izdvojena?: boolean;
     kontakti?: IKontakt[];
     lokacija?: ILokacija;
 }

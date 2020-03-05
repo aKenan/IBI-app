@@ -6,7 +6,7 @@
   <div class="col-md-2 col-sm-6" style="display:inline-block; padding:1%"  *ngFor="let file of imagesToShow;let i= index">
     <button class="btn btn-danger btn-sm pull-right" (click)="removeFromPreview(imagesToShow.length - 1 - i)"><span class="fa fa-times"></span></button>
     <!-- style="width:20%; padding:1%; display:inline-block" -->
-    <img  [src]="imagesToShow[imagesToShow.length - 1 - i].content">
+    <img  [src]="imagesToShow[imagesToShow.length - 1 - i].content" style="max-width: 100%; max-height: 100%;">
   </div>
 </div>
 

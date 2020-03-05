@@ -8,6 +8,7 @@ import { NekretnineComponent } from './nekretnine/nekretnine.component';
 import { NekretninaComponent } from './nekretnina/nekretnina.component';
 import { OpisiComponent } from './opisi/opisi.component';
 import { PorukeComponent } from './poruke/poruke.component';
+import { IzdvojeneNekretnineComponent } from './izdvojene-nekretnine/izdvojene-nekretnine.component';
 
 const routes: Routes = [
   {path: '', component: AdminLayoutComponent, canActivate: [AuthGuard],
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'nekretnine', component:NekretnineComponent },
       { path: 'nekretnina/:id', component:NekretninaComponent },
       { path: 'opisi', component: OpisiComponent},
-      { path: 'poruke', component:PorukeComponent}
+      { path: 'poruke', component:PorukeComponent},
+      { path: 'izdvojene', component: IzdvojeneNekretnineComponent }
     ]
   },
   {path: 'login', component:LoginComponent, pathMatch: 'full'}

@@ -1,12 +1,12 @@
-<form [formGroup]="opisNekretnineForm" (ngSubmit)="dodajAzurirajIzdvojenuNekretninu()" *ngIf="showForm">      
+<form [formGroup]="izdvojenaNekretninaForm" (ngSubmit)="dodajAzurirajIzdvojenuNekretninu()" *ngIf="showForm">      
   <div class="modal-body">   
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label class="control-label" for="dateOfBirth">Naziv nekretnine</label>
           <div class="input-group">
-            <h3>{{nova == true ? nekretnina.naziv : izdvojenaNekretnina.nekretnina.naziv}}</h3>
-          </div>
+            <!-- <h3 *ngIf="nova">{{nekretnina.naziv}}</h3>
+            <h3 *ngIf="!nova">{{izdvojenaNekretnina.nekretnina.naziv}}</h3> -->
+          </div> 
         </div>
 
           <div class="form-group">
@@ -14,7 +14,7 @@
             <div class="input-group">
                 <dx-date-box
                     displayFormat="dd.MM.yyyy."
-                    name="vaziOd" formControlName="vaziOd" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
+                    name="vaziOd" formControlName="vaziOd">
                 </dx-date-box>
             </div>
           </div>
@@ -24,7 +24,8 @@
             <div class="input-group">
                 <dx-date-box
                     displayFormat="dd.MM.yyyy."
-                    name="vaziOd" formControlName="vaziDo" [ngClass]="{ 'is-invalid': f.vaziOd.touched && f.vaziOd.errors }">
+                    [min]="f.vaziOd.value"
+                    name="vaziDo" formControlName="vaziDo">
                 </dx-date-box>
             </div>
           </div>

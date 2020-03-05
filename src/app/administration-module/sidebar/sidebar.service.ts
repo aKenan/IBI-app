@@ -36,7 +36,7 @@ export class SidebarService {
         },
         {
           title: 'Izdvojene nekretnine',
-          url:'/IBIAdminPanel/nekretnine'
+          url:'/IBIAdminPanel/izdvojene'
         }
       ]
     },

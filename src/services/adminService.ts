@@ -269,14 +269,14 @@ export class AdminService{
     )}
 
     dajIzdvojeneNekretnine():Observable<IIzdvojenaNekretninaViewModel[]>{
-        return this.http.get(this.gs.getApiUrl(`/admin/Poruka/dajzanekretninu`), { headers : this.getHeaders() }).pipe(
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajIzdvojeneNekretnine`), { headers : this.getHeaders() }).pipe(
             map((response => response as IIzdvojenaNekretninaViewModel[]),
             catchError((error => throwError(error)  ))
             )
     )}
 
     dajIzdvojenuNekretninu(nekretninaId: number):Observable<IIzdvojenaNekretninaViewModel>{
-        return this.http.get(this.gs.getApiUrl(`/admin/Poruka/dajIzdvojenuNekretninu/${nekretninaId}`), { headers : this.getHeaders() }).pipe(
+        return this.http.get(this.gs.getApiUrl(`/admin/Nekretnina/dajIzdvojenuNekretninu/${nekretninaId}`), { headers : this.getHeaders() }).pipe(
             map((response => response as IIzdvojenaNekretninaViewModel),
             catchError((error => throwError(error)  ))
             )

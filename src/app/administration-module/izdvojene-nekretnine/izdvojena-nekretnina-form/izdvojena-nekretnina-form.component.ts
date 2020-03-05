@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IIzdvojenaNekretninaViewModel } from '../../../../models/nekretnina';
 import { AdminService } from '../../../../services/adminService';
 import { INekretnina } from '../../../../models/public';
@@ -13,6 +13,9 @@ import { GeneralService } from '../../../../services/generalService';
 export class IzdvojenaNekretninaFormComponent implements OnInit {
   @Input() nekretninaId : number;
   @Input() nova : boolean;
+  @Output() zavrsenaAkcija : EventEmitter<any> = new EventEmitter();;
+
+  showForm : boolean = false;
   izdvojenaNekretninaForm: FormGroup;
 
   izdvojenaNekretnina : IIzdvojenaNekretninaViewModel = {nekretninaId : this.nekretninaId, vaziOd : new Date(), aktivan:true};
@@ -20,8 +23,11 @@ export class IzdvojenaNekretninaFormComponent implements OnInit {
 
   constructor(private adminService : AdminService, private fb : FormBuilder, private gs : GeneralService) { }
 
+  get f() { return this.izdvojenaNekretninaForm.controls};
+
   ngOnInit() {
-    if(!this.nova)
+    console.log("nova", this.nova);
+    if(!this.nova) 
     {
       this.adminService.dajIzdvojenuNekretninu(this.nekretninaId).subscribe(
         data =>{
@@ -46,6 +52,7 @@ export class IzdvojenaNekretninaFormComponent implements OnInit {
         vaziDo: [izdvojenaNekretnina.vaziDo],
         aktivan : izdvojenaNekretnina.aktivan
       })
+      this.showForm = true;
   }
 
   dodajAzurirajIzdvojenuNekretninu(){
@@ -54,6 +61,7 @@ export class IzdvojenaNekretninaFormComponent implements OnInit {
         this.adminService.dodajIzdvojenuNekretninu(this.izdvojenaNekretninaForm.value).subscribe(
           data =>{
             this.gs.showSuccess("Uspješno ste pohranili izdvojenu nekretninu", 1500);
+            this.zavrsenaAkcija.emit();
           }
         )
       }
@@ -61,10 +69,15 @@ export class IzdvojenaNekretninaFormComponent implements OnInit {
         this.adminService.azurirajIzdvojenuNekretninu(this.izdvojenaNekretninaForm.value).subscribe(
           data =>{
             this.gs.showSuccess("Uspješno ste ažurirali izdvojenu nekretninu", 1500);
+            this.zavrsenaAkcija.emit();
           }
         )
       }
     }
+  }
+
+  odustani(){
+    this.zavrsenaAkcija.emit();
   }
 
 }

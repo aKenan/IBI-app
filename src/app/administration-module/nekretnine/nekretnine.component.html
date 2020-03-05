@@ -1,3 +1,13 @@
+<ng-template #izdvojenaNekretnina let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Izdvojena nekretnina</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <izdvojena-nekretnina-form [nekretninaId]="odabranaNekretninaId" [nova]="true" (zavrsenaAkcija)="dismissModal($event)"></izdvojena-nekretnina-form>
+</ng-template>
+
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -53,6 +63,7 @@
                   <a type="button" class="btn btn-sm btn-success" *ngIf="!cellData.data.aktivan" (click)="aktivirajNekretninu(cellData.data.id)" title="Aktiviraj nekretninu"><i class="fa fa-check"></i></a>   
                   <a type="button" class="btn btn-sm btn-danger"  *ngIf="cellData.data.aktivan" (click)="deaktivirajNekretninu(cellData.data.id)" title="Deaktiviraj nekretninu"><i class="fa fa-times"></i></a>               
                   <a type="button" class="btn btn-sm btn-info" [routerLink]="['/IBIAdminPanel/nekretnina/', cellData.data.id]" title="Azuriraj nekretninu"><i class="fa fa-pen"></i></a>
+                  <a type="button" class="btn btn-sm btn-info" (click)="dodajUIzdvojene(izdvojenaNekretnina, cellData.data.id)" title="Dodaj u izdvojene" *ngIf="!cellData.data.izdvojena"><i class="fa fa-highlighter"></i></a>
                 </div>
 
                 <div *dxTemplate="let cellData of 'checkTemplate'">
