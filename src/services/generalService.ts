@@ -12,7 +12,8 @@ import { DefaultUrlSerializer, UrlTree } from '@angular/router';
   })
 
 export class GeneralService{
-    rootApi : string = 'http://localhost:15079/api';
+    rootApi: string = 'http://164.68.122.148:81/api';
+    //rootApi : string = 'http://localhost:15079/api';
     //rootApi : string = "http://192.168.0.110/api"; //linux VM
     //rootApi : string = "http://192.168.0.105:81/api";
 

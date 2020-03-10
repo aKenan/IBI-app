@@ -5,7 +5,7 @@
           <div class="form-group">
             <label class="control-label" for="dateOfBirth">Vrsta opisa</label>
             <div class="input-group">
-              <select class="form-control" formControlName="opisId" [ngClass]="{ 'is-invalid': f.opisId.touched && f.opisId.errors }">
+              <select class="form-control" (change)="vrstaOpisaChange($event)" formControlName="opisId" [ngClass]="{ 'is-invalid': f.opisId.touched && f.opisId.errors }">
                 <option *ngFor="let elem of opisi" [value]="elem.id">{{elem.naziv}}</option>                                                                
               </select>
               <div *ngIf="f.opisId.errors && f.opisId.touched" class="invalid-feedback">              
@@ -14,7 +14,27 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" *ngIf="odabraniTipVrijednostiId == tipVrijednostiDaNe">
+            <label class="control-label" for="dateOfBirth">Vrijednost</label>
+            <div class="input-group">
+              <dx-check-box formControlName="vrijednost" 
+                            [width]="120"
+                            text=""
+                        ></dx-check-box>
+            </div>            
+          </div>
+
+          <div class="form-group" *ngIf="odabraniTipVrijednostiId == tipVrijednostiDatum">
+            <label class="control-label" for="dateOfBirth">Vrijednost</label>
+            <div class="input-group">
+              <dx-date-box
+              displayFormat="dd.MM.yyyy."
+                name="vrijednost" formControlName="vrijednost" [ngClass]="{ 'is-invalid': f.vrijednost.touched && f.vrijednost.errors }">
+          </dx-date-box>
+            </div>            
+          </div>
+
+          <div class="form-group" *ngIf="odabraniTipVrijednostiId != tipVrijednostiDaNe && odabraniTipVrijednostiId != tipVrijednostiDatum">
             <label class="control-label" for="dateOfBirth">Vrijednost</label>
             <div class="input-group">              
               <input type="text" class="form-control" formControlName="vrijednost" [ngClass]="{ 'is-invalid': f.vrijednost.touched && f.vrijednost.errors }"/>
@@ -25,7 +45,7 @@
           </div>
 
           <div class="form-group">
-            <dx-check-box formControlName="aktivan"
+            <dx-check-box formControlName="aktivan" 
                             [width]="120"
                             text="Aktivan"
                         ></dx-check-box>

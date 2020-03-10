@@ -14,9 +14,10 @@ import { SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { NekretninaFormComponent } from './nekretnina-form/nekretnina-form.component';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { IzdvojenaNekretninaBasicComponent } from './izdvojena-nekretnina-basic/izdvojena-nekretnina-basic.component';
 
 @NgModule({
-  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent, NekretninaFormComponent],
+  declarations: [MainPublicComponent, KontaktComponent, PorukaComponent, NekretninaBasicComponent, PretragaComponent, NekretninaFormComponent, IzdvojenaNekretninaBasicComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

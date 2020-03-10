@@ -29,6 +29,13 @@ import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/publ
             catchError((error => throwError(error)  ))
             )
     )}
+    
+    dajIzdvojeneNekretnine(): Observable<INekretninaBasic[]>{
+        return this.http.get(this.gs.getApiUrl(`/izdvojene`)).pipe(
+            map((response => response as INekretninaBasic[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
 
     pretraga(pojam:string, tipProdaje:number, tipNekretnine:number) : Observable<INekretninaBasic[]>{
         return this.http.get(this.gs.getApiUrl(`/pretraga/${pojam}/${tipProdaje}/${tipNekretnine}`)).pipe(

@@ -22,7 +22,7 @@
         [rowAlternationEnabled]="true"
         [showBorders]="true"
         [wordWrapEnabled]="true"
-        [columnAutoWidth] = "true">
+        [columnAutoWidth] = "true"> 
         
         <dxo-paging [pageSize]="20"></dxo-paging>
         <dxo-pager
@@ -36,12 +36,18 @@
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         
         <dxi-column dataField="opisNekretnine.naziv" [allowFiltering]="true" caption="Opis"></dxi-column>
-        <dxi-column dataField="vrijednost" [allowFiltering]="true" caption="Vrijednost"></dxi-column>            
+        <dxi-column [allowFiltering]="true" caption="Vrijednost" cellTemplate="vrijednostTemplate"></dxi-column>            
         <dxi-column dataField="aktivan" [allowFiltering]="true" dataType="bool" cellTemplate="checkTemplate" [width]="75" cellTemplate="checkTemplate" caption="Aktivan"></dxi-column>   
         <dxi-column caption="#" dataField="id" cellTemplate="buttonTemplate" [width]="125"></dxi-column>     
         
         <div *dxTemplate="let cellData of 'dateCell'">
           {{cellData.value | date: 'dd.MM.yyyy. u HH:mm'}}
+        </div>
+
+        <div *dxTemplate="let cellData of 'vrijednostTemplate'">          
+          <span *ngIf="cellData.data.opisNekretnine.tipVrijednosti == tipVrijednostiDatum">{{cellData.data.vrijednost | date: 'dd.MM.yyyy. u HH:mm'}}</span>       
+          <span *ngIf="cellData.data.opisNekretnine.tipVrijednosti == tipVrijednostiDaNe" class="fa" [ngClass]="{'green fa-check' : cellData.data.vrijednost == 'true', 'red fa-times' : cellData.data.vrijednost == 'false'}"></span>   
+          <span *ngIf="cellData.data.opisNekretnine.tipVrijednosti != tipVrijednostiDatum && cellData.data.opisNekretnine.tipVrijednosti != tipVrijednostiDaNe">{{cellData.data.vrijednost}}</span>    
         </div>
 
         <div *dxTemplate="let cellData of 'buttonTemplate'">

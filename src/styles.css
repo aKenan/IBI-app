@@ -193,3 +193,32 @@ body {
     border-top: 1px solid lightgray;
     padding: 4px 4px 4px 4px;
   }
+
+  .search{
+    padding-top: 6%;
+    padding-bottom: 6%;
+    width:50%;
+    margin-left: 25%;
+}
+
+.ucitaj-jos{
+    width:25%
+}
+
+  @media only screen and (max-width:1100px){
+    .search{
+        width:100%;
+        margin-left: 0;
+    }
+
+    .ucitaj-jos{
+        width:75%
+    }
+}
+
+@media only screen and (max-width:800px){
+    .ucitaj-jos{
+        width:100%
+    }
+
+}

@@ -1,0 +1,7 @@
+<div style="position: relative;">
+  <img class="card-img-top" *ngIf="slikaContent != null" [src]="slikaContent" alt="Slika">
+  <div class="izdvojena-heading">
+    <h5 class="card-title"><a [routerLink]="['/nekretnina', nekretnina.id]">{{nekretnina.naziv}}</a></h5>
+    <h6><i class="fa fa-map-marker"></i> {{nekretnina.lokacija}}</h6>
+  </div>
+</div>

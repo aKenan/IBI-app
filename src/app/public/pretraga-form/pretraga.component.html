@@ -1,16 +1,18 @@
-<div class="div-center">
-  <div class="row pretraga">
+<div class="div-center row"> 
+  <h2>Pronađite Vaš Savršeni Dom</h2>
+  <div class="row pretraga">    
     <div class="odabir">
       <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 0" [ngClass]="{'btn-outline-primary' : tipProdaje != 0, 'btn-primary' : tipProdaje == 0}">Sve</button>
       <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 1" [ngClass]="{'btn-outline-primary' : tipProdaje != 1, 'btn-primary' : tipProdaje == 1}">Prodaja</button>
       <button type="button" class="btn btn-outline-primary" (click)="tipProdaje = 2" [ngClass]="{'btn-outline-primary' : tipProdaje != 2, 'btn-primary' : tipProdaje == 2}">Najam</button>      
     </div>    
     <div class="input-group mb-3 input-group-lg">
+      <input type="text" [(ngModel)]="pojam" class="form-control txt-pretraga" aria-label="Pretraga" placeholder="Pojam za pretragu" (keyup.enter)="pretraga()">
       <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fa fa-search"></i></span>
-      </div>
-      <input type="text" [(ngModel)]="pojam" class="form-control" aria-label="Pretraga" placeholder="pojam za pretragu" (keyup.enter)="pretraga()">
-      <button type="submit" class="btn btn-primary" (click)="pretraga()" style="width: 10%;"><i class="fa fa-search" ></i></button>
+        <button type="submit" class="btn btn-primary" (click)="pretraga()"><i class="fa fa-search" ></i></button>
+        <!-- <span class="input-group-text"><i class="fa fa-search"></i></span> -->
+      </div>      
+      
     </div>
     
     <a (click)="viseOpcija = !viseOpcija" style="cursor: pointer;">

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IOpisNekretnine, INekretninaOpisNekretnine } from '../../../../models/nekretnina';
 import { AdminService } from '../../../../services/adminService';
+import { TipVrijednosti } from '../../../../models/enums/enums';
 
 @Component({
   selector: 'opisi-nekretnine',
@@ -12,6 +13,10 @@ export class OpisiNekretnineComponent implements OnInit {
   @Input() nekretninaId : number;
   opis: INekretninaOpisNekretnine;
   opisiNekretnina : INekretninaOpisNekretnine[];
+
+  tipVrijednostiDaNe : number = TipVrijednosti.DaNe;
+  tipVrijednostiDatum : number = TipVrijednosti.Datum;
+  
   constructor(private modalService: NgbModal, private adminService: AdminService) { }
 
   ngOnInit() {
@@ -47,7 +52,7 @@ export class OpisiNekretnineComponent implements OnInit {
   }
 
   dismissModal(model:any){
-    this.dajOpiseZaNekretninu();
+    this.dajOpiseZaNekretninu(); 
     this.modalService.dismissAll();
   }
 

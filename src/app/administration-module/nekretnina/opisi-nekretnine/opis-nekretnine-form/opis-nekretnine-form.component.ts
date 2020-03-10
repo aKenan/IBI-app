@@ -3,6 +3,7 @@ import { AdminService } from '../../../../../services/adminService';
 import { IOpisNekretnine, INekretninaOpisNekretnine } from '../../../../../models/nekretnina';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../../../services/generalService';
+import { TipVrijednosti } from '../../../../../models/enums/enums';
 
 @Component({
   selector: 'opis-nekretnine-form',
@@ -16,6 +17,9 @@ export class OpisNekretnineFormComponent implements OnInit {
   opisi: IOpisNekretnine[];
   opisNekretnineForm : FormGroup;
   showForm : boolean = false;
+  odabraniTipVrijednostiId : number = 0;
+  tipVrijednostiDaNe : number = TipVrijednosti.DaNe;
+  tipVrijednostiDatum : number = TipVrijednosti.Datum;
   constructor(private adminService: AdminService, private fb : FormBuilder, private gs: GeneralService) { }
 
   ngOnInit() {
@@ -27,7 +31,9 @@ export class OpisNekretnineFormComponent implements OnInit {
   dajSveOpise(){
     this.adminService.dajSveOpise().subscribe(
       data =>{
-        this.opisi = data as IOpisNekretnine[];
+        this.opisi = data as IOpisNekretnine[]; 
+        if(this.model.id >0)
+          this.vrstaOpisaChange(0);
       }
     )
   }
@@ -45,7 +51,7 @@ export class OpisNekretnineFormComponent implements OnInit {
       aktivan : [model.aktivan]
     })
 
-    this.showForm = true;
+    this.showForm = true;      
   }
 
   dodajAzurirajOpis(){
@@ -72,10 +78,18 @@ export class OpisNekretnineFormComponent implements OnInit {
             console.log(error);
           }
         )
-      }
-      
+      }      
     }
-    
+  }
+
+  odustani(){
+    this.dismiss.emit(null);
+  }
+
+  vrstaOpisaChange(id){
+    var tipVrijednosti = this.opisi.find(p=>p.id == this.opisNekretnineForm.controls.opisId.value);
+    console.log(tipVrijednosti);
+    this.odabraniTipVrijednostiId = tipVrijednosti.tipVrijednosti;
   }
 
 }

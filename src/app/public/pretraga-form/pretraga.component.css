@@ -3,7 +3,7 @@
 }
 
 .odabir{
-    display: flex; justify-content: center; width: 105%; margin-top:5px; margin-bottom: 5px;
+    display: flex; justify-content: center; margin-top:5px; margin-bottom: 5px;
 }
 
 .odabir select{
@@ -18,7 +18,7 @@
 .pretraga{
     background-color: #f8f9fa;
     margin-top:2%;
-    width:100%;
+    width:96%;
     display: BLOCK; 
     POSITION: relative;
 }
@@ -63,4 +63,14 @@
     padding: 30px 30px 25px 30px;
     padding-top: 0;
     border-radius: 0 0 3px 3px;
+}
+
+.div-center h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+}
+
+.txt-pretraga:focus{
+    border-style: none;
 }

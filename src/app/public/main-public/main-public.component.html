@@ -1,35 +1,32 @@
-<div class="container main-search">
+<div class="main-search">
   <div class="search">
     <pretraga-form></pretraga-form>
   </div>
 </div>
 <!-- https://swiperjs.com/demos/#free_mode_no_fixed_positions -->
 
-<div class="izdvojeni">
-  <swiper class="swiper-container" [config]="slideConfig">
-    <div class="swiper-slide swiper-element">
-      <h1>1</h1>
-    </div>
-    <div class="swiper-slide swiper-element">
-      <h1>2</h1>
-    </div>
-    <div class="swiper-slide swiper-element">
-      <h1>3</h1>
-    </div>
+<div class="container izdvojeni">
+  
+ <h3 style="margin-bottom: 25px;">Izdvajamo</h3>
+  
+  <swiper class="swiper-container" [config]="slideConfig" *ngIf="showSwipper">
+    <div class="swiper-slide swiper-element" *ngFor="let izdvojena of izdvojene">
+      <izdvojena-nekretnina-basic [nekretnina]="izdvojena"></izdvojena-nekretnina-basic>
+    </div>    
     </swiper>
 </div> 
 
 
-<div style="margin-top:2%;">
+<div class="container" style="margin-top:10%;">
   <div class="col-sm-12" style="margin-top: 1%;  margin-bottom: 1%;  border-bottom: 1px solid lightgray;">
-    <h4>Najnovije nekretnine</h4>
+    <h3>Najnovije nekretnine</h3>
   </div>
   <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-xl-4" style="margin-top:1%;margin-bottom:1%" *ngFor="let nekretnina of rezultatPretrage">
+    <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-xl-4" style="margin-top:1%;margin-bottom:1%" *ngFor="let nekretnina of rezultatPretrage">
       <nekretnina-basic class="nekretnina-basic" [nekretnina]="nekretnina"></nekretnina-basic>
     </div>  
     <div class="row div-center" style="width:100%; margin-top:5px">
-      <button class="btn btn-info" [disabled]="!imaJos" (click)="dajJos()" style="width:25%">Učitaj još...</button>  
+      <button class="btn btn-info ucitaj-jos" [disabled]="!imaJos" (click)="dajJos()">Učitaj još...</button>  
     </div>
   </div>
   
