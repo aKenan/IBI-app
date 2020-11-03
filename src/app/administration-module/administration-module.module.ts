@@ -25,7 +25,6 @@ import { OpisNekretnineFormComponent } from './nekretnina/opisi-nekretnine/opis-
 import { SlikeComponent } from './nekretnina/slike/slike.component';
 import { SlikeUploadComponent } from './nekretnina/slike/slike-upload/slike-upload.component';
 import { DragDropDirective } from './dragdrop.directive';
-import { SidebarComponent } from '../administration-module/sidebar/sidebar.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap';
 
@@ -36,6 +35,7 @@ import { PorukeComponent } from './poruke/poruke.component';
 import { PorukaDetaljiComponent } from './poruke/poruka-detalji/poruka-detalji.component';
 import { IzdvojeneNekretnineComponent } from './izdvojene-nekretnine/izdvojene-nekretnine.component';
 import { IzdvojenaNekretninaFormComponent } from './izdvojene-nekretnine/izdvojena-nekretnina-form/izdvojena-nekretnina-form.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -46,7 +46,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [LoginComponent, MainComponent, 
     AdminLayoutComponent, NavbarComponent, 
     NekretnineComponent, NekretninaComponent, LokacijaComponent, SidebarComponent,
-    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, SlikeComponent, SlikeUploadComponent, DragDropDirective, PorukeComponent, PorukaDetaljiComponent, IzdvojeneNekretnineComponent, IzdvojenaNekretninaFormComponent],
+    OpisiComponent, OpisiFormComponent, OpisiNekretnineComponent, OpisNekretnineFormComponent, 
+    SlikeComponent, SlikeUploadComponent, DragDropDirective, PorukeComponent, PorukaDetaljiComponent, IzdvojeneNekretnineComponent, IzdvojenaNekretninaFormComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoutingModule,

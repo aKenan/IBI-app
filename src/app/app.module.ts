@@ -17,7 +17,7 @@ import { LowerCaseUrlSerializer } from '../services/generalService';
   declarations: [
     AppComponent,
     PublicLayoutComponent,
-    EmptyLayoutComponent
+    EmptyLayoutComponent,
   ],
   imports: [
     BrowserModule,

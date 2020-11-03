@@ -31,11 +31,19 @@ export class PretragaComponent implements OnInit {
   }
 
   pretraga(){
-    this.publicService.pretraga(this.pojam, this.tipProdaje, this.tipNekretnine).subscribe(
-      data =>{
-        this.rezultatPretrage = data;
-      }
-    )
+    if(this.pojam.length >= 3)      
+      this.publicService.pretragaPojam(this.pojam).subscribe(
+        data =>{
+          this.rezultatPretrage = data;
+        }
+      )
+    else
+      alert("Unesite minilano 3 karaktera(WARNING)");
+    // this.publicService.pretraga(this.pojam, this.tipProdaje, this.tipNekretnine).subscribe(
+    //   data =>{
+    //     this.rezultatPretrage = data;
+    //   }
+    // )
   }
 
 }

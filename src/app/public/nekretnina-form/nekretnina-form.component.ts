@@ -35,16 +35,24 @@ export class NekretninaFormComponent implements OnInit {
   }
 
   obradiSlike(glavna:string, slike:string[]){    
-    slike.forEach(slika => {      
-      this.publicService.postaviSadrzajSlike(slika).subscribe(
-        data =>{
-          this.galleryImages.push({
-            small:data,
-            medium:data,
-            big:data
-          });
-        }
-      );
+    slike.forEach(slika => {   
+      this.galleryImages.push({
+        url: this.publicService.dajSlikaUrl(slika),
+        small: this.publicService.dajSlikaUrl(slika),
+        medium: this.publicService.dajSlikaUrl(slika),
+        big: this.publicService.dajSlikaUrl(slika),
+        description: "1ssss",
+        label: "label"
+      })   
+      // this.publicService.postaviSadrzajSlike(slika).subscribe(
+      //   data =>{
+      //     this.galleryImages.push({
+      //       small:data,
+      //       medium:data,
+      //       big:data
+      //     });
+      //   }
+      // );
     });
   }
   

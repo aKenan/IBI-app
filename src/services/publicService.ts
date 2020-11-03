@@ -3,7 +3,7 @@ import { Injectable, SkipSelf } from "@angular/core";
 import { Observable, Subject, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Http, Headers, Response, ResponseContentType, HttpModule } from "@angular/http";
-import { map, take, catchError } from 'rxjs/operators';
+import { map, take, catchError,  } from 'rxjs/operators';
 import { GeneralService } from "./generalService";
 import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/public";
 
@@ -15,6 +15,8 @@ import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/publ
   export class PublicService{
 
     constructor(private gs : GeneralService, private http: HttpClient){}
+
+
 
     dajTipoveNekretnine() : Observable<any>{
         return this.http.get(this.gs.getApiUrl(`/tipoviNekretnine`)).pipe(
@@ -32,6 +34,13 @@ import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/publ
     
     dajIzdvojeneNekretnine(): Observable<INekretninaBasic[]>{
         return this.http.get(this.gs.getApiUrl(`/izdvojene`)).pipe(
+            map((response => response as INekretninaBasic[]),
+            catchError((error => throwError(error)  ))
+            )
+    )}
+
+    pretragaPojam(pojam:string): Observable<INekretninaBasic[]>{
+        return this.http.get(this.gs.getApiUrl(`/pretraga/${pojam}`)).pipe(
             map((response => response as INekretninaBasic[]),
             catchError((error => throwError(error)  ))
             )
@@ -92,5 +101,7 @@ import { DllModel, IPoruka, INekretninaBasic, INekretnina } from "../models/publ
             )
     )}
 
-      
+    dajSlikaUrl(lokacija:string) : string{
+        return this.gs.getApiUrl(`/slika/${lokacija}`)
+    }
   }
